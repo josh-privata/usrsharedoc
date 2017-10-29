@@ -1,0 +1,24 @@
+===== Programming =====
+<accordion>
+<panel title="General" class="panel-collapse collapse">
+{{indexmenu>:programming:general#1|tsort skipfile[+]/index|start/}}
+</panel>
+<panel title="Python" class="panel-collapse collapse">
+{{indexmenu>:programming:python#1|tsort skipfile[+]/index|start/}}
+</panel>
+<panel title="PHP" class="panel-collapse collapse">
+{{indexmenu>:programming:php#1|tsort skipfile[+]/index|start/}}
+</panel>
+<panel title="Web" class="panel-collapse collapse">
+{{indexmenu>:programming:web#1|tsort skipfile[+]/index|start/}}
+</panel>
+<panel title="Shopify" class="panel-collapse collapse">
+{{indexmenu>:programming:shopify#1|tsort skipfile[+]/index|start/}}
+</panel>
+<panel title="Django" class="panel-collapse collapse">
+{{indexmenu>:programming:django#1|tsort skipfile[+]/index|start/}}
+</panel>
+<panel title="JavaScript" class="panel-collapse collapse">
+{{indexmenu>:programming:js#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

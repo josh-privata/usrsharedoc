@@ -1,0 +1,6 @@
+===== Linux - How To=====
+<accordion>
+<panel title="How To" class="panel-collapse collapse">
+{{indexmenu>:linux:howto#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

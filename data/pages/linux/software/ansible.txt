@@ -1,0 +1,75 @@
+====== Ansible Installation ======
+
+{{tag>linux software ansible configuration_management}}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Configuration Management">
+[[ansible|Ansible]]
+
+[[salt|Salt]]
+
+[[puppet|Puppet]]
+
+</panel>
+</affix>
+
+<jumbotron>
+===== Automation For Everyone =====
+</jumbotron>
+
+===== Operating Systems =====
+
+|        ^ Included ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  |Yes  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | No |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | No |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | No | 
+
+===== Installation =====
+=== Ubuntu ===
+
+**1.**  Install the software-properties-common package to manage PPA's (python-software-properties on older versions)
+<code bash>
+sudo apt-get update
+sudo apt-get install software-properties-common
+</code>
+
+**2.**  Install the Ansible PPA, press ENTER at the prompt
+<code bash>
+sudo apt-add-repository ppa:ansible/ansible
+</code>
+
+**3.**  Update your package list
+<code bash>
+sudo apt-get update
+</code>
+
+**4.**  Install Ansible
+<code bash>
+sudo apt-get install ansible
+</code>
+
+===== Configuration =====
+[[linux:configuration:ansible|Click here for configuration details]]
+
+===== Usage =====
+[[linux:howto:ansible|Click here for usage details]]
+
+===== Related Software =====
+[[ssh|SSH]]
+
+[[salt|Salt]]
+
+[[puppet|Puppet]]
+
+===== Links =====
+[[https://www.ansible.com/|Ansible Website]]
+
+[[https://docs.ansible.com/|Ansible Documentation]]
+
+[[wp>Ansible_(software)]]
+
+===== Notes =====
+None

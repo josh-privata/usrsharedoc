@@ -1,0 +1,6 @@
+===== PHP =====
+<accordion>
+<panel title="PHP" class="panel-collapse collapse">
+{{indexmenu>:programming:php#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

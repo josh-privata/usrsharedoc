@@ -1,0 +1,62 @@
+====== Title ======
+
+{{tag>article}}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Heading =====
+Text
+
+''monospaced''
+
+Text
+
+==== Subheading ====
+
+Text
+
+''monospaced''
+
+Text
+
+=== SubSubheading ===
+
+Text ((This is a footnote)) ''monospaced''
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+
+===== Notes =====
+
+
+=== Links ===
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

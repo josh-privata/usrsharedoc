@@ -1,0 +1,448 @@
+====== Title ======
+
+{{tag>linux configuration bacula}}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+===== Procedure =====
+
+==== Step1 ====
+Configuration
+(How To Back Up a CentOS 7 Server with Bacula, DigitalOcean n.d.)
+Bacula Director
+Make a backup copy of the original configuration files located at /etc/bacula
+mv /etc/bacula/bacula-dir.conf /etc/bacula/bak/bacula-dir.bak
+cp /etc/bacula/bacula-sd.conf /etc/bacula/bak/bacula-sd.bak
+cp /etc/bacula/bacula-fd.conf /etc/bacula/bal/bacula-fd.bak
+Create the main configuration file located at /etc/bacula/bacula-dir.conf
+sudo vi /etc/bacula/bacula-dir.conf
+Director Resource Configuration
+Add the following to the file
+# Define this director
+Director {                          
+   Name = bacula-dir
+   # where we listen for UA connections
+   DIRport = 9101                
+   QueryFile = "/etc/bacula/query.sql"
+   WorkingDirectory = "/var/spool/bacula"
+   PidDirectory = "/var/run"
+   Maximum Concurrent Jobs = 1
+   # Chose a safe console password  
+   Password = "CorrectBatteryHorseStaple"         
+   Messages = Daemon
+   # This is the address to listen on, configure it to localhost
+   DirAddress = 127.0.0.1
+}
+#
+# Restricted console used by tray-monitor to get the status of the director
+#
+Console {
+   Name = bacula-mon
+   Password = "CorrectBatteryHorseStaple"
+   CommandACL = status, .status
+}
+At the end of the file add the following line to ensure Bacula loads our custom configuration directory
+@|"find /etc/bacula -name '*.conf' -type f -exec echo @{} \;"
+Storage Daemon Resource
+Create the storage daemon configuration file located at /etc/bacula/storage.conf
+sudo vi /etc/bacula/storage.conf
+Add the following to the file
+Storage {
+   Name = File
+   # Do not use "localhost" here or clients cant connect
+   # use a fqdn or IP address
+   Address = bacula_director_fqdn_or_ip                
+   # Configure access port for the Storage Daemon
+   SDPort = 9103
+   # Bacula Password
+   Password = "CorrectBatteryHorseStaple"
+   # Type of storage device
+   Device = FileStorage
+   # Result of backup
+   Media Type = File
+}
+Local Backup Configuration
+Create the local backup configuration file located at /etc/bacula/job.conf
+sudo vi /etc/bacula/job.conf
+Add the following to the file
+Job {
+   Name = "BackupLocalFiles"
+   JobDefs = "DefaultJob"
+}
+Database Connection
+Create the database configuration file located at /etc/bacula/catalog.conf
+sudo vi /etc/bacula/catalog .conf
+Add the following to the file
+# Generic catalog service
+Catalog {
+   Name = MyCatalog
+   dbname = "bacula";
+   dbuser = "bacula";
+   dbpassword = "CorrectBatteryHorseStaple"
+}
+Messaging
+To configure the backup schedules create a file called /etc/bacula/msg.conf
+vi /etc/bacula/msg.conf
+add the following to suit the requirement
+# Reasonable message delivery -- send most everything to email address and console
+Messages {
+   Name = Standard
+   mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<%r\>\"   	      -s \"Bacula: %t %e of %c %l\" %r"
+   operatorcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<%r\>\" -s \"Bacula: Intervention needed for %j\" %r"
+   mail = root@localhost = all, !skipped            
+   operator = root@localhost = mount
+   console = all, !skipped, !saved
+   append = "/var/log/bacula/bacula.log" = all, !skipped
+   catalog = all
+}
+#
+# Message delivery for daemon message pool = Default 
+Messages = Standard 
+Where = /bacula/restore 
+# ETC Backup Template 
+Job { 
+   # Each job must have a unique name 
+   Name = "backupETC-bacula" 
+   Type = Backup 
+   Client = bacula 
+   FileSet = "ETC" 
+   Storage = File 
+   # Set the schedule to one of the predefined schedules on the Director 
+   Schedule = "BusinessData" 
+   Messages = Standard 
+   Pool = Default 
+   # Define Pools for each backup type 
+   Full Backup Pool =Default 
+   Incremental Backup Pool = Default 
+   Differential Backup Pool = Default 
+   # Some jobs are more important than others 
+   Priority=5 
+   Where = /bacula/backup 
+} 
+# WWW Restore template. 
+Job { 
+   Name = "RestoreETC-bacula" 
+   Type = Restore 
+   Client=bacula 
+   FileSet="ETC" 
+   Storage = File 
+   Pool = Default 
+   Messages = Standard 
+   Where = /bacula/restore 
+}
+Messages {
+   Name = Daemon
+   mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<%r\>\" -s \"Bacula      daemon message\" %r"
+   mail = root@localhost = all, !skipped            
+   console = all, !skipped, !saved
+   append = "/var/log/bacula/bacula.log" = all, !skipped
+}
+Schedules
+To configure the backup schedules create a file called /etc/bacula/schedule.conf
+vi /etc/bacula/schedule.conf
+add the following to suit the requirements
+Schedule {
+   Name = "BusinessData"
+   Run = Level=Full Pool=Full-Pool 1st mon at 18:00
+   Run = Level=Differential Pool=Differential-Pool mon at 18:00
+   # Run an incremental backup every 3 hours and 30 minutes
+   Run = Level=Incremental Pool=Incremental-Pool mon-fri at 08:00
+   Run = Level=Incremental Pool=Incremental-Pool mon-fri at 11:30
+   Run = Level=Incremental Pool=Incremental-Pool mon-fri at 15:00
+}
+Job Definitions
+To configure the backup schedules create a file called /etc/bacula/jobdefs.conf
+vi /etc/bacula/jobdefs.conf
+add the following to suit the requirements
+JobDefs {
+  Name = "DefaultJob"
+  Type = Backup
+  Level = Incremental
+  Client = bacula-fd 
+  FileSet = "Full Set"
+  Schedule = "WeeklyCycle"
+  Storage = File
+  Messages = Standard
+  Pool = File
+  Priority = 10
+  Write Bootstrap = "/var/spool/bacula/%c.bsr"
+}
+Storage Pools
+To configure the storage pool options that define job retention and backup rules create a file called /etc/bacula/pools.conf
+vi /etc/bacula/pools.conf
+add the following to suit the requirements
+# Storage Pool definition
+Pool {
+   Name = Default
+   Pool Type = Backup
+   # Bacula can automatically recycle Volumes  	
+   Recycle = yes
+   # Remove expired backup files                       
+   AutoPrune = yes
+   # Time to retain backup for                     
+   Volume Retention = 365 days
+   # Set the maximum size for backup files
+   Maximum Volume Bytes = 50G
+   # Set maximum number of backups          
+   Maximum Volumes = 100         
+}
+Pool {
+   Name = Full-Pool
+   Pool Type = Backup
+   # Automatically recycle volumes
+   Recycle = yes
+   # Prune expired volumes
+   AutoPrune = yes
+   Volume Retention = 6 months
+   Maximum Volume Jobs = 1
+   Label Format = "Monthly-Full-${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}-${Hour:p/2/0/r}-${Minute:p/2/0/r}" 
+   Maximum Volumes = 6
+}
+Pool {
+   Name = Incremental-Pool
+   Pool Type = Backup
+   Recycle = yes
+   AutoPrune = yes
+   Volume Retention = 1 month
+   Maximum Volume Jobs = 1
+   Label Format = "Weekly-Inc-${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}-${Hour:p/2/0/r}-${Minute:p/2/0/r}" 
+   Maximum Volumes = 4
+}
+Pool {
+   Name = Differential-Pool
+   Pool Type = Backup
+   Recycle = yes
+   AutoPrune = yes
+   Volume Retention = 14 days
+   Maximum Volume Jobs = 1
+   Label Format = "Daily-Diff-${Year}-${Month:p/2/0/r}-${Day:p/2/0/r}-${Hour:p/2/0/r}-${Minute:p/2/0/r}" 
+   Maximum Volumes = 7
+}
+File Selection
+To define the files and directories to be included in each backup create a file called /etc/bacula//fileset.conf
+vi /etc/bacula/fileset.conf
+add the following to suit the requirements
+# List of files to be backed up
+FileSet {
+   # Name your fileset
+   Name = "Full Set"
+   Include {
+		# Put file set backup options here
+		Options {
+	 	signature = MD5
+	 	compression = GZIP
+	 }    
+	 # Put file's and directories to backup here. Note that partitions 		 # existing on the file system need to be added individually. 
+	 File = /etc
+   }
+   	 # Put file's and directories to ignore here
+		Exclude {
+	 	File = /var/lib/bacula
+	 	File = /proc
+	 	File = /tmp
+   }
+}
+Create a separate ‘fileset’ definition for each client that has specific backup requirements. Save the file and exit
+Add Clients 
+Create a file called /etc/bacula/conf/ClientName.conf for each client that requires backup services
+vi /etc/bacula/conf/ClientName.conf
+add the following to suit the requirements
+Client {
+   Name = ClientHost-fd
+   Address = client_private_FQDN
+   # Can be changed in the client’s bacula-fd.conf file if required
+   FDPort = 9102 
+   Catalog = MyCatalog
+   # This is the password entered into each client’s bacula-fd.conf file
+   Password = "CorrectBatteryHorseStaple"          
+   File Retention = 30 days            
+   Job Retention = 6 months            
+   AutoPrune = no                     
+}
+# Define backup jobs here
+Job {
+   # Each job must have a unique name
+   Name = "fullbackup-ClientName"
+   Client=ClientName-fd
+   JobDefs = “DefaultJob”
+   FileSet="AppropriateFileset"
+   FileSet = "Full Set"
+   Storage = localhost-sd
+   # Set the schedule to one of the predefined schedules on the Director
+   Schedule = "BusinessData"
+   Messages = Standard
+   Pool = Default
+   # Define Pools for each backup type
+   Full Backup Pool = Full-Pool
+   Incremental Backup Pool = Inc-Pool
+   Differential Backup Pool = Diff-Pool
+   # Some jobs are more important than others
+   Priority=5
+}
+Bacula Storage Daemon
+Open the main configuration file
+sudo vi /etc/bacula/bacula-sd.conf
+Move to the ‘Storage’ section and configure the connection to the Bacula Director
+Storage {                            
+   Name = BackupServer-sd
+   # Port assigned on Director
+   SDPort = 9103                  
+   WorkingDirectory = "/var/lib/bacula"
+   Pid Directory = "/var/run/bacula"
+   Maximum Concurrent Jobs = 20
+   # FQDN assigned on Director
+   SDAddress = backup_server_private_FQDN
+}
+Move to the ‘Device’ section and configure the Backup Directory Location
+Device {
+   Name = FileStorage
+   Media Type = File
+   Archive Device = /bacula/backup 
+   LabelMedia = yes;                   
+   Random Access = Yes;
+   AutomaticMount = yes;               
+   RemovableMedia = no;
+   AlwaysOpen = no;
+}
+Check Configuration Syntax
+Perform a dry run to test configuration
+sudo bacula-dir -tc /etc/bacula/bacula-dir.conf
+sudo bacula-sd -tc /etc/bacula/bacula-sd.conf
+(Re)Start the Bacula Director Service and ensure it is enabled at system boot
+sudo systemctl restart bacula-dir 
+sudo systemctl enable bacula-dir
+MariaDB
+Start MariaDB and enable on boot
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+Create Bacula user, database and tables
+/usr/libexec/bacula/grant_mysql_privileges
+/usr/libexec/bacula/create_mysql_database -u root
+/usr/libexec/bacula/make_mysql_tables -u bacula
+sudo mysql_secure_installation
+Create Bacula password
+mysql -u root -p
+At the MariaDB prompt enter the following
+UPDATE mysql.user SET Password=PASSWORD('CorrectBatteryHorseStaple') WHERE User='bacula';
+FLUSH PRIVILEGES;
+exit
+To enable MariaDB support run the following
+sudo alternatives --config libbaccats.so
+Enter the following at the prompted
+There are 3 programs which provide 'libbaccats.so'.
+
+  Selection    Command
+-----------------------------------------------
+   1           /usr/lib64/libbaccats-mysql.so
+   2           /usr/lib64/libbaccats-sqlite3.so
+*+ 3           /usr/lib64/libbaccats-postgresql.so
+
+Enter to keep the current selection[+], or type selection number: 1
+
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+==== Step2 ====
+
+Text ((This is a footnote))
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Conclusion ====
+
+Text
+
+===== Notes =====
+Filed under: {{tagpage>networking}}
+
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

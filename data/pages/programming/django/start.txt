@@ -1,0 +1,6 @@
+===== Django =====
+<accordion>
+<panel title="Django" class="panel-collapse collapse">
+{{indexmenu>:programming:django#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

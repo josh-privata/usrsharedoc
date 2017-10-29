@@ -1,0 +1,81 @@
+====== Title ======
+
+{{tag>linux software }}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Description =====
+Text ''monospaced'' Text
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+===== Installation =====
+sudo apt-get install auditd
+
+Text ''monospaced'' Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+===== Configuration =====
+
+^ Flag ^ Description ^
+^ -f  |             | 
+^     |             | 
+
+[[linux:configuration#XXXXX|Click here for more complete configuration details]]
+===== Usage =====
+Text ''monospaced'' Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+[[linux:hotto#XXXXX|Click here for more complete usage details]]
+===== Related Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+===== Notes =====
+Text
+
+Filed under: {{tagpage>networking}}
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

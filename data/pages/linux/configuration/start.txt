@@ -1,0 +1,6 @@
+===== Linux - Configuration =====
+<accordion>
+<panel title="Configuration" class="panel-collapse collapse">
+{{indexmenu>:linux:configuration#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

@@ -1,0 +1,58 @@
+====== Welcome ======
+
+Hi.
+
+===== Software =====
+  * [[linux:software:i3]]
+  * [[linux:software:neovim]]
+  * [[linux:software:spacevim]] 
+  * [[linux:software:oh-my-zsh]]
+  * [[linux:software:mutt]]
+  * [[linux:software:screen|screen/tmux]]
+  * [[linux:software:bacula]]
+  * [[linux:software:compression|compression - tar/rar/gzip etc]]
+  * [[linux:software:dump]]
+  * [[linux:software:rsync]]
+  * [[linux:software:webmin]]
+  * [[linux:software:docker]]
+  * [[linux:software:vagrant]]
+  * [[linux:software:ansible]]
+
+----
+===== Linux =====
+
+  * [[linux:visudo]]
+  * [[linux:cron]]
+  * [[linux:nfs|NFS]]
+  * [[linux:dhcp|DHCP]]
+  * [[linux:dns|DNS]]
+  * [[linux:security|Security]]
+  * 
+
+----
+
+===== Programming =====
+
+  * [[linux:template]]
+
+==== Python ====
+
+  * [[python:index]]
+
+==== PHP ====
+
+  * [[php:index]]
+
+==== Web ====
+
+  * [[web:index]]
+
+==== Shopify ====
+
+  * [[shopify:index]]
+
+==== Django ====
+
+  * [[django:index]]
+----
+

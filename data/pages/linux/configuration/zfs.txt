@@ -1,0 +1,432 @@
+====== ZFS How To ======
+
+{{tag>linux configuration zfs}}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="ZFS">
+[[linux:software:zfs|ZFS Installation]]
+
+[[linux:configuration:zfs|ZFS Configuration]]
+
+[[linux:howto:zfs|ZFS How To]]
+
+</panel>
+</affix>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | Yes  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | Yes  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | Yes  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=freebsd|FreeBSD]]    | Yes  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | No |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | No | 
+
+
+===== Software =====
+[[linux:software:zfs|ZFS Installation]]
+
+[[linux:configuration:zfs|ZFS Configuration]]
+
+===== Links =====
+[[http://zfsonlinux.org/|ZFS on Linux]]
+
+[[http://open-zfs.org/wiki/Documentation|OpenZFS Documentation]] 
+
+====== ZFS Properties ======
+===== ZFS Native Properties =====
+^	Property Name	^	Type	^	Default Value	^	Description	^
+|	aclinherit	|	String	|	secure	|Controls how ACL entries are inherited when files and directories are created. The values are discard, noallow, secure, and passthrough. For a description of these values, see ACL Property (aclinherit).|
+|	atime	|	Boolean	|	on	|Controls whether the access time for files is updated when they are read. Turning this property off avoids producing write traffic when reading files and can result in significant performance gains, though it might confuse mailers and similar utilities.|
+|	available	|	Number	|	N/A	|Read-only property that identifies the amount of disk space available to a dataset and all its children, assuming no other activity in the pool. Because disk space is shared within a pool, available space can be limited by various factors including physical pool size, quotas, reservations, and other datasets within the pool. The property abbreviation is avail. For more information about disk space accounting, see ZFS Disk Space Accounting.|
+|	canmount	|	Boolean	|	on	|Controls whether a file system can be mounted with the zfs mount command. This property can be set on any file system, and the property itself is not inheritable. However, when this property is set to off, a mount point can be inherited to descendent file systems, but the file system itself is never mounted. When the noauto option is set, a dataset can only be mounted and unmounted explicitly. The dataset is not mounted automatically when the dataset is created or imported, nor is it mounted by the zfs mount-a command or unmounted by the zfs unmount-a command. For more information, see The canmountProperty.|
+|	checksum	|	String	|	on	|Controls the checksum used to verify data integrity. The default value is on, which automatically selects an appropriate algorithm, currently fletcher4. The values are on, off, fletcher2, fletcher4, and sha256. A value of off disables integrity checking on user data. A value of off is not recommended.|
+|	compression	|	String	|	off	|Enables or disables compression for a dataset. The values are on, off, lzjb, gzip, and gzip-N. Currently, setting this property to lzjb, gzip, or gzip-N has the same effect as setting this property to on. Enabling compression on a file system with existing data only compresses new data. Existing data remains uncompressed. The property abbreviation is compress.|
+|	compressratio	|	Number	|	N/A	|Read-only property that identifies the compression ratio achieved for a dataset, expressed as a multiplier. Compression can be enabled by the zfs set compression=ondataset command. The value is calculated from the logical size of all files and the amount of referenced physical data. It includes explicit savings through the use of the compression property.|
+|	copies	|	Number	|	1	|Sets the number of copies of user data per file system. Available values are 1, 2, or 3. These copies are in addition to any pool-level redundancy. Disk space used by multiple copies of user data is charged to the corresponding file and dataset, and counts against quotas and reservations. In addition, the used property is updated when multiple copies are enabled. Consider setting this property when the file system is created because changing this property on an existing file system only affects newly written data.|
+|	creation	|	String	|	N/A	|Read-only property that identifies the date and time that a dataset was created.|
+|	devices	|	Boolean	|	on	|Controls whether device files in a file system can be opened.	|
+|	exec	|	Boolean	|	on	|Controls whether programs in a file system are allowed to be executed. Also, when set to off, mmap(2) calls with PROT_EXEC are disallowed.|
+|	mounted	|	Boolean	|	N/A	|Read-only property that indicates whether a file system, clone, or snapshot is currently mounted. This property does not apply to volumes. The value can be either yes or no.|
+|	mountpoint	|	String	|	N/A	|Controls the mount point used for this file system. When the mountpoint property is changed for a file system, the file system and any descendents that inherit the mount point are unmounted. If the new value is legacy, then they remain unmounted. Otherwise, they are automatically remounted in the new location if the property was previously legacy or none, or if they were mounted before the property was changed. In addition, any shared file systems are unshared and shared in the new location. For more information about using this property, see Managing ZFS Mount Points.|
+|	primarycache	|	String	|	all	|Controls what is cached in the primary cache (ARC). Possible values are all, none, andmetadata. If set to all, both user data and metadata are cached. If set to none, neither user data nor metadata is cached. If set to metadata, only metadata is cached.|
+|	origin	|	String	|	N/A	|Read-only property for cloned file systems or volumes that identifies the snapshot from which the clone was created. The origin cannot be destroyed (even with the -r or -f option) as long as a clone exists. Non-cloned file systems have an origin of none.|
+|	quota	|	Number (or none)	|	none	|Limits the amount of disk space a dataset and its descendents can consume. This property enforces a hard limit on the amount of disk space used, including all space consumed by descendents, such as file systems and snapshots. Setting a quota on a descendent of a dataset that already has a quota does not override the ancestor's quota, but rather imposes an additional limit. Quotas cannot be set on volumes, as the volsize property acts as an implicit quota. For information about setting quotas, see Setting Quotas on ZFS File Systems.|
+|	readonly	|	Boolean	|	off	|Controls whether a dataset can be modified. When set to on, no modifications can be made. The property abbreviation is rdonly.|
+|	recordsize	|	Number	|	128K	|Specifies a suggested block size for files in a file system. The property abbreviation is recsize. For a detailed description, see The recordsizeProperty.|
+|	referenced	|	Number	|	N/A	|Read-only property that identifies the amount of data accessible by a dataset, which might or might not be shared with other datasets in the pool. When a snapshot or clone is created, it initially references the same amount of disk space as the file system or snapshot it was created from, because its contents are identical. The property abbreviation is refer.|
+|	refquota	|	Number (or none)	|	none	|Sets the amount of disk space that a dataset can consume. This property enforces a hard limit on the amount of space used. This hard limit does not include disk space used by descendents, such as snapshots and clones.|
+|	refreservation	|	Number (or none)	|	none	|Sets the minimum amount of disk space that is guaranteed to a dataset, not including descendents, such as snapshots and clones. When the amount of disk space used is below this value, the dataset is treated as if it were taking up the amount of space specified by refreservation. The refreservationreservation is accounted for in the parent dataset's disk space used, and counts against the parent dataset's quotas and reservations. If refreservation is set, a snapshot is only allowed if enough free pool space is available outside of this reservation to accommodate the current number of referenced bytes in the dataset. The property abbreviation is refreserv.|
+|	reservation	|	Number (or none)	|	none	|Sets the minimum amount of disk space guaranteed to a dataset and its descendents. When the amount of disk space used is below this value, the dataset is treated as if it were using the amount of space specified by its reservation. Reservations are accounted for in the parent dataset's disk space used, and count against the parent dataset's quotas and reservations. The property abbreviation is reserv. For more information, see Setting Reservations on ZFS File Systems.|
+|	secondarycache	|	String	|	all	|Controls what is cached in the secondary cache (L2ARC). Possible values are all, none, and metadata. If set to all, both user data and metadata are cached. If set to none, neither user data nor metadata is cached. If set to metadata, only metadata is cached.|
+|	setuid	|	Boolean	|	on	|Controls whether the setuid bit is honored in a file system.|
+|	shareiscsi	|	String	|	off	|Controls whether a ZFS volume is shared as an iSCSI target. The property values are on, off, and type=disk. You might want to setshareiscsi=on for a file system so that all ZFS volumes within the file system are shared by default. However, setting this property on a file system has no direct effect.|
+|	sharenfs	|	String	|	off	|Controls whether a file system is available over NFS and what options are used. If set to on, the zfs share command is invoked with no options. Otherwise, the zfs share command is invoked with options equivalent to the contents of this property. If set to off, the file system is managed by using the legacy share and unsharecommands and the dfstab file. Controls whether a ZFS dataset is published as an NFS share. You can also publish and unpublish an NFS share of a ZFS dataset by using the zfs share and zfs unshare commands. Both methods of publishing an NFS share require that the NFS share properties are already set. For information about setting NFS share properties, see the zfs set share command When the sharenfs property is changed, the file system share and any children inheriting the property are re-published with any new options that have been set with the zfs set sharecommand only if the property was previously off, or if the shares were published before the property was changed. If the new property value is off, the file system shares are unpublished. For more information about sharing ZFS file systems, see Sharing and Unsharing ZFS File Systems.|
+|	snapdir	|	String	|	hidden	|Controls whether the .zfs directory is hidden or visible in the root of the file system. For more information about using snapshots, see Overview of ZFS Snapshots.|
+|	type	|	String	|	N/A	|Read-only property that identifies the dataset type as filesystem (file system or clone), volume, or snapshot.|
+|	used	|	Number	|	N/A	|Read-only property that identifies the amount of disk space consumed by a dataset and all its descendents. For a detailed description, see The used Property.|
+|	usedbychildren	|	Number	|	off	|Read-only property that identifies the amount of disk space that is used by children of this dataset, which would be freed if all the dataset's children were destroyed. The property abbreviation is usedchild.|
+|	usedbydataset	|	Number	|	off	|Read-only property that identifies the amount of disk space that is used by a dataset itself, which would be freed if the dataset was destroyed, after first destroying any snapshots and removing any refreservation reservations. The property abbreviation is usedds.|
+|	usedbyrefreservation	|	Number	|	off	|Read-only property that identifies the amount of disk space that is used by a refreservation set on a dataset, which would be freed if therefreservation was removed. The property abbreviation is usedrefreserv.|
+|	usedbysnapshots	|	Number	|	off	|Read-only property that identifies the amount of disk space that is consumed by snapshots of a dataset. In particular, it is the amount of disk space that would be freed if all of this dataset's snapshots were destroyed. Note that this value is not simply the sum of the snapshots' usedproperties, because space can be shared by multiple snapshots. The property abbreviation is usedsnap.|
+|	version	|	Number	|	N/A	|Identifies the on-disk version of a file system, which is independent of the pool version. This property can only be set to a later version that is available from the supported software release. For more information, see the zfs upgradecommand.|
+|	volsize	|	Number	|	N/A	|For volumes, specifies the logical size of the volume. For a detailed description, see The volsizeProperty.|
+|	volblocksize	|	Number	| 8 KB	|For volumes, specifies the block size of the volume. The block size cannot be changed after the volume has been written, so set the block size at volume creation time. The default block size for volumes is 8 KB. Any power of 2 from 512 bytes to 128 KB is valid. The property abbreviation is volblock.|
+|	zoned	|	Boolean	|	N/A	|Indicates whether a dataset has been added to a non-global zone. If this property is set, then the mount point is not honored in the global zone, and ZFS cannot mount such a file system when requested. When a zone is first installed, this property is set for any added file systems. For more information about using ZFS with zones installed, see Using ZFS on a Solaris System With Zones Installed.|
+|	xattr	|	Boolean	|	on	|Indicates whether extended attributes are enabled (on) or disabled (off) for this file system.|
+
+
+===== ZFS Read-Only Native Properties ===== 
+ZFS Read-Only Native Properties
+Read-only native properties can be retrieved but not set. Read-only native properties are not inherited. Some native properties are specific to a particular type of dataset. In such cases, the dataset type is mentioned in the description in Table 6-1.
+
+The read-only native properties are listed here and described in Table 6-1.
+
+  * available
+  * compressratio
+  * creation
+  * mounted
+  * origin
+  * referenced
+  * type
+  * used
+  * usedbychildren
+  * usedbydataset
+  * usedbyrefreservation
+  * usedbysnapshots
+
+=== The used Property ===
+The used property is a read-only property that identifies the amount of disk space consumed by this dataset and all its descendents. This value is checked against the dataset's quota and reservation. The disk space used does not include the dataset's reservation, but does consider the reservation of any descendent datasets. The amount of disk space that a dataset consumes from its parent, as well as the amount of disk space that is freed if the dataset is recursively destroyed, is the greater of its space used and its reservation.
+
+When snapshots are created, their disk space is initially shared between the snapshot and the file system, and possibly with previous snapshots. As the file system changes, disk space that was previously shared becomes unique to the snapshot and is counted in the snapshot's space used. The disk space that is used by a snapshot accounts for its unique data. Additionally, deleting snapshots can increase the amount of disk space unique to (and used by) other snapshots. For more information about snapshots and space issues, see Out of Space Behavior.
+
+The amount of disk space used, available, and referenced does not include pending changes. Pending changes are generally accounted for within a few seconds. Committing a change to a disk using the fsync(3c) or O_SYNC function does not necessarily guarantee that the disk space usage information will be updated immediately.
+
+===== Settable ZFS Native PropertIES =====
+  * aclinherit
+  * aclmode
+  * atime
+  * canmount
+  * checksum
+  * compression
+  * copies
+  * devices
+  * exec
+  * mountpoint
+  * primarycache
+  * quota
+  * readonly
+  * recordsize
+  * refquota
+  * refreservation
+  * reservation
+  * secondarycache
+  * shareiscsi
+  * sharenfs
+  * setuid
+  * snapdir
+  * version
+  * volsize
+  * volblocksize
+  * zoned
+  * xattr
+
+=== canmount Property ===
+If the canmount property is set to off, the file system cannot be mounted by using the zfs mount or zfs mount -a commands. Setting this property to off is similar to setting the mountpoint property to none, except that the dataset still has a normal mountpoint property that can be inherited. For example, you can set this property to off, establish inheritable properties for descendent file systems, but the parent file system itself is never mounted nor is it accessible to users. In this case, the parent file system is serving as a container so that you can set properties on the container, but the container itself is never accessible.
+
+In the following example, userpool is created, and its canmount property is set to off. Mount points for descendent user file systems are set to one common mount point, /export/home. Properties that are set on the parent file system are inherited by descendent file systems, but the parent file system itself is never mounted.
+
+  # zpool create userpool mirror c0t5d0 c1t6d0
+  # zfs set canmount=off userpool
+  # zfs set mountpoint=/export/home userpool
+  # zfs set compression=on userpool
+  # zfs create userpool/user1
+  # zfs create userpool/user2
+  # zfs mount
+    userpool/user1                  /export/home/user1
+    userpool/user2                  /export/home/user2
+
+Setting the canmount property to noauto means that the dataset can only be mounted explicitly, not automatically. This value setting is used by the Oracle Solaris upgrade software so that only those datasets belonging to the active boot environment are mounted at boot time.
+
+=== recordsize Property ===
+The recordsize property specifies a suggested block size for files in the file system.
+
+This property is designed solely for use with database workloads that access files in fixed-size records. ZFS automatically adjust block sizes according to internal algorithms optimized for typical access patterns. For databases that create very large files but access the files in small random chunks, these algorithms might be suboptimal. Specifying a recordsize value greater than or equal to the record size of the database can result in significant performance gains. Use of this property for general purpose file systems is strongly discouraged and might adversely affect performance. The size specified must be a power of 2 greater than or equal to 512 bytes and less than or equal to 128 KB. Changing the file system's recordsize value only affects files created afterward. Existing files are unaffected.
+
+The property abbreviation is recsize.
+
+=== volsize Property ===
+The volsize property specifies the logical size of the volume. By default, creating a volume establishes a reservation for the same amount. Any changes to volsize are reflected in an equivalent change to the reservation. These checks are used to prevent unexpected behavior for users. A volume that contains less space than it claims is available can result in undefined behavior or data corruption, depending on how the volume is used. These effects can also occur when the volume size is changed while the volume is in use, particularly when you shrink the size. Use extreme care when adjusting the volume size.
+
+Though not recommended, you can create a sparse volume by specifying the -s flag to zfs create -V or by changing the reservation after the volume has been created. A sparse volume is a volume whose reservation is not equal to the volume size. For a sparse volume, changes to volsize are not reflected in the reservation.
+
+===== ZFS User Properties =====
+In addition to the native properties, ZFS supports arbitrary user properties. User properties have no effect on ZFS behavior, but you can use them to annotate datasets with information that is meaningful in your environment.
+
+User property names must conform to the following conventions:
+
+They must contain a colon (':') character to distinguish them from native properties.
+
+They must contain lowercase letters, numbers, or the following punctuation characters: ':', '+','.', '_'.
+
+The maximum length of a user property name is 256 characters.
+
+The expected convention is that the property name is divided into the following two components but this namespace is not enforced by ZFS:
+
+  module:property
+
+When making programmatic use of user properties, use a reversed DNS domain name for the module component of property names to reduce the chance that two independently developed packages will use the same property name for different purposes. Property names that begin with com.sun. are reserved for use by Oracle Corporation.
+
+The values of user properties must conform to the following conventions:
+
+They must consist of arbitrary strings that are always inherited and are never validated.
+
+The maximum length of the user property value is 1024 characters.
+
+For example:
+
+  # zfs set dept:users=finance userpool/user1
+  # zfs set dept:users=general userpool/user2
+  # zfs set dept:users=itops userpool/user3
+
+All of the commands that operate on properties, such as zfs list, zfs get, zfs set, and so on, can be used to manipulate both native properties and user properties.
+
+For example:
+
+  zfs get -r dept:users userpool
+    NAME            PROPERTY    VALUE           SOURCE
+    userpool        dept:users  all             local
+    userpool/user1  dept:users  finance         local
+    userpool/user2  dept:users  general         local
+    userpool/user3  dept:users  itops           local
+
+To clear a user property, use the zfs inherit command. For example:
+
+  # zfs inherit -r dept:users userpool
+If the property is not defined in any parent dataset, it is removed entirely.
+
+===== Managing ZFS Properties =====
+==== Setting ZFS Properties ====
+You can use the zfs set command to modify any settable dataset property. Or, you can use the zfs create command to set properties when a dataset is created. For a list of settable dataset properties, see Settable ZFS Native Properties.
+
+The zfs set command takes a property/value sequence in the format of property=value followed by a dataset name. Only one property can be set or modified during each zfs set invocation.
+
+The following example sets the atime property to off for tank/home.
+
+  # zfs set atime=off tank/home
+
+In addition, any file system property can be set when a file system is created. For example:
+
+  # zfs create -o atime=off tank/home
+
+You can specify numeric property values by using the following easy-to-understand suffixes (in increasing order of magnitude): BKMGTPEZ. Any of these suffixes can be followed by an optional b, indicating bytes, with the exception of the B suffix, which already indicates bytes. The following four invocations of zfs set are equivalent numeric expressions that set the quota property be set to the value of 50 GB on the tank/home/marks file system:
+
+  # zfs set quota=50G tank/home/marks
+  # zfs set quota=50g tank/home/marks
+  # zfs set quota=50GB tank/home/marks
+  # zfs set quota=50gb tank/home/marks
+
+The values of non-numeric properties are case-sensitive and must be in lowercase letters, with the exception of mountpoint and sharenfs. The values of these properties can have mixed upper and lower case letters.
+
+==== Inheriting ZFS Properties ====
+All settable properties, with the exception of quotas and reservations, inherit their value from the parent dataset, unless a quota or reservation is explicitly set on the descendent dataset. If no ancestor has an explicit value set for an inherited property, the default value for the property is used. You can use the zfs inherit command to clear a property value, thus causing the value to be inherited from the parent dataset.
+
+The following example uses the zfs set command to turn on compression for the tank/home/bonwick file system. Then, zfs inherit is used to clear the compression property, thus causing the property to inherit the default value of off. Because neither home nor tank has the compression property set locally, the default value is used. If both had compression enabled, the value set in the most immediate ancestor would be used (home in this example).
+
+  # zfs set compression=on tank/home/bonwick
+  # zfs get -r compression tank
+    NAME             PROPERTY      VALUE                    SOURCE
+    tank             compression   off                      default
+    tank/home        compression   off                      default
+    tank/home/bonwick compression   on                      local
+  # zfs inherit compression tank/home/bonwick
+  # zfs get -r compression tank
+    NAME             PROPERTY      VALUE                    SOURCE
+    tank             compression   off                      default
+    tank/home        compression   off                      default
+    tank/home/bonwick compression  off                      default
+
+The inherit subcommand is applied recursively when the -r option is specified. In the following example, the command causes the value for the compression property to be inherited by tank/home and any descendents it might have:
+
+  # zfs inherit -r compression tank/home
+
+Note - Be aware that the use of the -r option clears the current property setting for all descendent datasets.
+
+==== Querying ZFS Properties ====
+The simplest way to query property values is by using the zfs list command. For more information, see Listing Basic ZFS Information. However, for complicated queries and for scripting, use the zfs get command to provide more detailed information in a customized format.
+
+You can use the zfs get command to retrieve any dataset property. The following example shows how to retrieve a single property value on a dataset:
+
+  # zfs get checksum tank/ws
+    NAME             PROPERTY       VALUE                      SOURCE
+    tank/ws          checksum       on                         default
+
+The fourth column, SOURCE, indicates the origin of this property value. The following table defines the possible source values.
+
+=== Possible Source Values ===
+^ Source ^ Value ^ Description ^
+| default |This property value was never explicitly set for this dataset or any of its ancestors. The default value for this property is being used|
+| inherited |from dataset-name	This property value is inherited from the parent dataset specified in dataset-name|
+| local	This |property value was explicitly set for this dataset by using zfs set|
+| temporary	|This property value was set by using the zfs mount -o option and is only valid for the duration of the mount. For more information about temporary mount point properties, see Using Temporary Mount Properties|
+| - (none)	|This property is read-only. Its value is generated by ZFS.
+
+An example of output is a follows 
+  # zfs get all tank/home
+    NAME       PROPERTY              VALUE                  SOURCE
+    tank/home  type                  filesystem             -
+    tank/home  creation              Tue Jun 29 11:44 2010  -
+    tank/home  used                  21K                    -
+    tank/home  available             66.9G                  -
+    tank/home  referenced            21K                    -
+    tank/home  compressratio         1.00x                  -
+    tank/home  mounted               yes                    -
+    tank/home  quota                 none                   default
+    tank/home  reservation           none                   default
+    tank/home  recordsize            128K                   default
+    tank/home  mountpoint            /tank/home             default
+    tank/home  sharenfs              off                    default
+    tank/home  checksum              on                     default
+    tank/home  compression           off                    default
+    tank/home  atime                 on                     default
+    tank/home  devices               on                     default
+    tank/home  exec                  on                     default
+    tank/home  setuid                on                     default
+    tank/home  readonly              off                    default
+    tank/home  zoned                 off                    default
+    tank/home  snapdir               hidden                 default
+    tank/home  aclmode               groupmask              default
+    tank/home  aclinherit            restricted             default
+    tank/home  canmount              on                     default
+    tank/home  shareiscsi            off                    default
+    tank/home  xattr                 on                     default
+    tank/home  copies                1                      default
+    tank/home  version               4                      -
+    tank/home  utf8only              off                    -
+    tank/home  normalization         none                   -
+    tank/home  casesensitivity       sensitive              -
+    tank/home  vscan                 off                    default
+    tank/home  nbmand                off                    default
+    tank/home  sharesmb              off                    default
+    tank/home  refquota              none                   default
+    tank/home  refreservation        none                   default
+    tank/home  primarycache          all                    default
+    tank/home  secondarycache        all                    default
+    tank/home  usedbysnapshots       0                      -
+    tank/home  usedbydataset         21K                    -
+    tank/home  usedbychildren        0                      -
+    tank/home  usedbyrefreservation  0                      -
+    tank/home  logbias               latency                default
+
+Note - The casesensitivity, nbmand, normalization, sharesmb, utf8only, and vscan properties are not fully operational in the Oracle Solaris 10 release because the Oracle Solaris SMB service is not supported in the Oracle Solaris 10 release.
+
+The -s option to zfs get enables you to specify, by source type, the properties to display. This option takes a comma-separated list indicating the desired source types. Only properties with the specified source type are displayed. The valid source types are local, default, inherited, temporary, and none. The following example shows all properties that have been locally set on pool.
+
+  # zfs get -s local all pool
+    NAME             PROPERTY      VALUE                      SOURCE
+    pool             compression   on                         local
+
+Any of the above options can be combined with the -r option to recursively display the specified properties on all children of the specified dataset. In the following example, all temporary properties on all datasets within tank are recursively displayed:
+
+  # zfs get -r -s temporary all tank
+    NAME             PROPERTY       VALUE                      SOURCE
+    tank/home          atime          off                      temporary
+    tank/home/bonwick  atime          off                      temporary
+    tank/home/marks    atime          off                      temporary
+
+You can query property values by using the zfs get command without specifying a target file system, which means the command operates on all pools or file systems. For example:
+
+  # zfs get -s local all
+    tank/home               atime          off                    local
+    tank/home/bonwick       atime          off                    local
+    tank/home/marks         quota          50G                    local
+
+For more information about the zfs get command, see zfs(1M).
+
+==== Querying ZFS Properties for Scripting ====
+The zfs get command supports the -H and -o options, which are designed for scripting. You can use the -H option to omit header information and to replace white space with the Tab character. Uniform white space allows for easily parseable data. You can use the -o option to customize the output in the following ways:
+
+The literal name can be used with a comma-separated list of properties as defined in the Introducing ZFS Properties section.
+
+A comma-separated list of literal fields, name, value, property, and source, to be output followed by a space and an argument, which is a comma-separated list of properties.
+
+The following example shows how to retrieve a single value by using the -H and -o options of zfs get:
+
+  # zfs get -H -o value compression tank/home
+    on
+
+The -p option reports numeric values as their exact values. For example, 1 MB would be reported as 1000000. This option can be used as follows:
+
+  # zfs get -H -o value -p used tank/home
+    182983742
+
+You can use the -r option, along with any of the preceding options, to recursively retrieve the requested values for all descendents. The following example uses the -H, -o, and -r options to retrieve the dataset name and the value of the used property for export/home and its descendents, while omitting the header output:
+
+  # zfs get -H -o name,value -r used export/home
+    export/home             5.57G
+    export/home/marks       1.43G
+    export/home/maybee      2.15G
+
+===== ZFS Configuration Reference =====
+==== Show Pool Information ====
+Show pool status
+	# zpool status -x
+
+Show individual pool status in verbose mode
+	# zpool status -v datapool
+
+Show all the pools
+	# zpool list
+
+Show particular properties of all the pools (here, name and size)
+	# zpool list -o name,size
+
+Show all pools without headers and columns
+	# zpool list -Ho name
+
+==== Set ZFS file system properties ====
+Set quota of 1 GB on filesystem fs1
+	# zfs set quota=1G datapool/fs1
+
+Set Reservation of 1 GB on filesystem fs1
+	# zfs set reservation=1G datapool/fs1
+
+Disable ZFS auto mounting and enable mounting through /etc/vfstab
+	# zfs set mountpoint=legacy datapool/fs1
+
+Share fs1 as NFS
+	# zfs set sharenfs=on datapool/fs1
+
+Enable compression on fs1
+	# zfs set compression=on datapool/fs1
+
+==== Show file system info ====
+List all ZFS file system
+	# zfs list
+
+List all properties of a ZFS file system
+	# zfs get all datapool”
+
+====	ZFS I/O performance ====
+Display ZFS I/O Statistics every 2 seconds
+	# zpool iostat 2
+
+Display detailed ZFS I/O statistics every 2 seconds
+	# zpool iostat -v 2
+
+====	ZFS maintenance commands ====
+Run scrub on all file systems under data pool
+	# zpool scrub datapool
+
+Temporarily offline a disk (until next reboot)
+	# zpool offline -t datapool c0t0d0
+
+Online a disk to clear error count
+	# zpool online
+
+Clear error count without a need to the disk
+	# zpool clear
+
+ 

@@ -1,0 +1,29 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1508554379;s:8:"modified";i:1508597130;}s:7:"creator";s:12:"josh Cannons";s:4:"user";s:11:"joshcannons";s:11:"last_change";b:0;s:11:"contributor";a:1:{s:11:"joshcannons";s:12:"josh Cannons";}s:5:"title";s:10:"Navigation";s:8:"relation";a:2:{s:10:"references";a:4:{s:5:"start";b:1;s:12:"wiki:welcome";b:1;s:11:"wiki:syntax";b:1;s:13:"wiki:docuwiki";b:0;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:204:"Navigation
+.. index
+
+
+----------
+
+Popular Topics
+
+----------
+
+Links
+
+Back to Start
+
+Site Map
+
+Welcome to your new DokuWiki
+
+Formatting Syntax
+
+Docuwiki Help
+
+Edit Sidebar
+
+Josh Cannons
+
+usr/share
+
+Privata";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1508554379;s:8:"modified";i:1508597130;}s:7:"creator";s:12:"josh Cannons";s:4:"user";s:11:"joshcannons";s:11:"last_change";b:0;s:11:"contributor";a:1:{s:11:"joshcannons";s:12:"josh Cannons";}}}

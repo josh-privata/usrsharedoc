@@ -1,0 +1,156 @@
+====== Title ======
+
+{{tag>linux configuration }}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+===== Procedure =====
+
+==== Step1 ====
+TarSNAP Remote Backup
+(Tarsnap - Getting started, n.d.)
+Register the machine with tarsnap 
+tarsnap-keygen --keyfile /etc/tarsnap/tarsnap.key \
+		  --user tarsnap@yule.gov.net \
+		  --machine Hostname
+At the prompt, enter the user credentials supplied by the Network Security Team. Copy the tarsnap.key file to a secure location.
+Create a copy of the sample configuration file
+mv /usr/local/etc/tarsnap.conf.sample /usr/local/etc/tarsnap.conf
+Open the tarsnap configuration file located at /usr/local/etc/tarsnap.conf
+vi /usr/local/etc/tarsnap.conf
+And make the following changes
+# Tarsnap cache directory
+cachedir /opt/tarsnap-cache
+# Tarsnap key file
+keyfile /etc/tarsnap/tarsnap.key
+# Don't archive files which have the nodump flag set.
+nodump
+# Print statistics when creating or deleting archives.
+print-stats
+# Create a checkpoint once per GB of uploaded data.
+checkpoint-bytes 1G
+# Use SI prefixes to make numbers printed by --print-stats more readable.
+humanize-numbers
+# Exclude files and directories matching specified patterns.
+# Only one file or directory per command; multiple "exclude"
+# commands may be given.
+exclude *.core
+exclude /Users/*/Library/Cache
+exclude /home/*/.gvfs/
+# Include only files and directories matching specified patterns.
+# Only one file or directory per command; multiple "include"
+# commands may be given.
+Include *.core
+Include /Users/*/Library/Cache
+Include /home/*/.gvfs/
+To test the configuration for errors run the following command
+tarsnap –verify-config
+
+
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+==== Step2 ====
+
+Text ((This is a footnote))
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Conclusion ====
+
+Text
+
+===== Notes =====
+Filed under: {{tagpage>networking}}
+
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

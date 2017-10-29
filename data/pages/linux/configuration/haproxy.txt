@@ -1,0 +1,200 @@
+====== Title ======
+
+{{tag>linux configuration }}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+===== Procedure =====
+
+==== Step1 ====
+HAProxy
+(How to setup HAProxy as Load Balancer for Nginx on CentOS 7, n.d.)
+Move the original HAProxy configuration file found at /etc/haproxy/haproxy.cfg to a backup copy
+mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+Create a new configuration file 
+vi /etc/haproxy/haproxy.cfg
+Add the following details as appropriate, using the comments as a guide
+# Global settings
+global
+	# Log configuration
+	log 127.0.0.1 local0 local1 debug     
+	# Process information	
+	chroot /var/lib/haproxy
+	pidfile /var/run/haproxy.pid
+	# Maximum number of connections
+	maxconn 50000
+	# Number of system CPU cores.                
+	Nbproc 1 
+	# Haproxy running under user and group "haproxy"
+	user haproxy            
+	group haproxy
+	# Run as daemon
+	daemon
+	# turn on stats unix socket
+	stats socket /var/lib/haproxy/stats
+	# Set DH keysize
+	tune.ssl.default-dh-param 4096 
+# Defaults if no override specified
+defaults
+	# Default to HTTP proxy
+	mode http
+	# Log all events
+	log global
+	# Timeout controls
+	retries 3
+	timeout http-request 10s
+	timeout queue 1m
+	timeout connect 10s
+	timeout client 1m
+	timeout server 1m
+	timeout http-keep-alive 10s
+	timeout check 10s
+	# Set X-Forward-For headers
+	option forwardfor
+	option http-server-close                
+# Front-End Configuration
+frontend http
+	# Bind all requests to port 80	
+	bind *:80
+	reqadd X-Forwarded-Proto:\ http
+	default_backend www_backend
+frontend https
+	# Bind all requests to port 443 using yule certificate
+	bind *:443 ssl crt /etc/ssl/private/yule.gov.au.pem
+	reqadd X-Forwarded-Proto:\ https
+	default_backend www_backend
+# Back-End Configuration
+backend www_backend
+	# Force SSL
+	redirect scheme https if !{ ssl_fc }
+	# Load Balancing algorithm
+	balance roundrobin
+	# Servers to load balance between
+	server www-1 WEB_SERVER1.yule.gov.com:80 check
+	server www-2 WEB_SERVER2.yule.gov.com:80 check               
+Open the rsyslog configuration file
+vi /etc/rsyslog.conf
+Add the definition for HAProxy
+$ModLoad imudp
+$UDPServerRun 514
+Create the HAProxy configuration file for rsyslog at /etc/rsyslog.d/haproxy.conf
+vi /etc/rsyslog.d/haproxy.conf
+And add the following information
+# Access Log Location
+local2.=info     /var/log/haproxy-access.log
+# Service Information Log Location
+local2.notice    /var/log/haproxy-info.log
+Restart rsyslog to implement changes
+systemctl restart rsyslog
+Enable HAProxy and enable at system boot
+systemctl enable haproxy
+systemctl restart haproxy
+
+
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+==== Step2 ====
+
+Text ((This is a footnote))
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Conclusion ====
+
+Text
+
+===== Notes =====
+Filed under: {{tagpage>networking}}
+
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

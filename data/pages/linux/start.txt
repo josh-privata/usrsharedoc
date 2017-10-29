@@ -1,0 +1,12 @@
+===== Linux =====
+<accordion>
+<panel title="Software" class="panel-collapse collapse">
+{{indexmenu>:linux:software#1|tsort skipfile[+]/index|start/}}
+</panel>
+<panel title="How To" class="panel-collapse collapse">
+{{indexmenu>:linux:howto#1|tsort skipfile[+]/index|start/}}
+</panel>
+<panel title="Configuration" class="panel-collapse collapse">
+{{indexmenu>:linux:configuration#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

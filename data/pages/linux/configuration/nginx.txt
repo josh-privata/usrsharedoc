@@ -1,0 +1,228 @@
+====== Title ======
+
+{{tag>linux configuration }}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+===== Procedure =====
+
+==== Step1 ====
+Nginx Web Server
+Begin by opening the nginx configuration file located at /etc/nginx/nginx.conf
+sudo vi /etc/nginx/nginx.conf
+Make the following changes to the file with the ‘http’ block
+# Ensure all system CPU cores are used
+worker_processes 2
+# Add our custom configuration files
+include /etc/nginx/sites-enabled/*.conf;
+# Increase domain name parsing memory allocation
+server_names_hash_bucket_size 64;
+Create the folders used for mounting web content shares
+sudo mkdir -p /var/www/SITE1.yule.gov.net/html
+sudo mkdir -p /var/www/SITE2.yule.gov.net/html
+Set the permissions to allow nginx access to the directories and public read access to the files
+sudo chown -R nginx:nginx /var/www/SITE1.yule.gov.net/html
+sudo chown -R nginx:nginx /var/www/SITE2.yule.gov.net/html
+sudo chmod -R 755 /var/www
+Create the folders nginx uses for managing website configuration
+sudo mkdir /etc/nginx/sites-available
+sudo mkdir /etc/nginx/sites-enabled
+Copy the default nginx configuration files from /etc/nginx/conf.d
+sudo cp /etc/nginx/conf.d/default.conf /etc/nginx/sites-available/SITE1.yule.gov.net.conf
+sudo cp /etc/nginx/conf.d/default.conf /etc/nginx/sites-available/SITE2.yule.gov.net.conf
+Open the configuration file for the website ‘SITE1.gov.net’ located at /etc/nginx/sites-available/site1.gov.net.conf
+sudo vi /etc/nginx/sites-available/SITE1.yule.gov.net.conf
+Make the following changes as necessary using the comments as a guide
+server {
+	# Listen Port
+	listen  80;
+	# Website Name		
+	server_name SITE1.yule.gov.net www.SITE1.yule.gov.net;
+	location / {
+		# Location of Website Files    		
+		root  /var/www/SITE1.yule.gov.net/html;
+		# Pages to load initially
+    		index  index index.php index.html index.htm;
+		# Default page if requested page can’t be found
+    		try_files $uri $uri/ =404;
+	}
+	# Parse for any 40x requests    
+	error_page 400 401 402 403 404 /40x.html;
+	# location of 40x error pages	
+	location = /40x.html {
+		root  /var/www/SITE1.yule.gov.net/error;
+	}
+	# Parse for any 50x requests
+	error_page  500 502 503 504  /50x.html;
+	# location of 50x error pages
+	location = /50x.html {
+		root  /var/www/SITE1.yule.gov.net/error;
+	}
+	location ~ \.php$ {
+		# Default page if requested php page can’t be found
+		try_files $uri =404;
+		# Location of the php-fpmd socket
+		fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+		# PHP Pages to load initially
+		fastcgi_index index.php;
+		# PHP-fpm script location
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		# Modules to include
+		include fastcgi_params;
+	}
+}
+Open the configuration file for the website ‘yule2.gov.net’ located at /etc/nginx/sites-available/yule2.gov.net.conf
+sudo vi /etc/nginx/sites-available/yule2.gov.net.conf
+Make the following changes
+server {
+	# Listen Port
+	listen  80;
+	# Website Name		
+	server_name SITE2.yule.gov.net www.SITE2.yule.gov.net;
+	location / {
+		# Location of Website Files    		
+		root  /var/www/SITE2.yule.gov.net/html;
+		# Pages to load initially
+    		index  index index.php index.html index.htm;
+		# Default page if requested page can’t be found
+    		try_files $uri $uri/ =404;
+	}
+	# Parse for any 40x requests    
+	error_page 400 401 402 403 404 /40x.html;
+	# location of 40x error pages	
+	location = /40x.html {
+		root  /var/www/SITE2.yule.gov.net/error;
+	}
+	# Parse for any 50x requests
+	error_page  500 502 503 504  /50x.html;
+	# location of 50x error pages
+	location = /50x.html {
+		root  /var/www/SITE2.yule.gov.net/error;
+	}
+	location ~ \.php$ {
+		# Default page if requested php page can’t be found
+		try_files $uri =404;
+		# Location of the php-fpmd socket
+		fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+		# PHP Pages to load initially
+		fastcgi_index index.php;
+		# PHP-fpm script location
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		# Modules to include
+		include fastcgi_params;
+	}
+}
+Create symbolic links from the sites-enabled configuration files to the sites-available directory
+sudo ln -s /etc/nginx/sites-available/ SITE1.yule.gov.net.conf /etc/nginx/sites-enabled/SITE1.yule.gov.net.conf
+sudo ln -s /etc/nginx/sites-available/ SITE2.yule.gov.net.conf /etc/nginx/sites-enabled/SITE2.yule.gov.net.conf
+Restart nginx and enable service at system boot
+sudo systemctl enable nginx
+sudo systemctl restart nginx
+
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+==== Step2 ====
+
+Text ((This is a footnote))
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Conclusion ====
+
+Text
+
+===== Notes =====
+Filed under: {{tagpage>networking}}
+
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

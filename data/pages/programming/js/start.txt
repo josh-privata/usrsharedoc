@@ -1,0 +1,6 @@
+===== JavaScript =====
+<accordion>
+<panel title="JavaScript" class="panel-collapse collapse">
+{{indexmenu>:programming:js#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

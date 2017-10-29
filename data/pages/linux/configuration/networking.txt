@@ -1,0 +1,173 @@
+====== Title ======
+
+{{tag>linux configuration }}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+===== Procedure =====
+
+==== Step1 ====
+1. Configure Networking
+Open the network configuration file located at /etc/sysconfig/network-scripts/ifcfg-enp0s8
+vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
+And make the following changes to enable DHCP
+HWADDR=00:00:00:00:00:00
+TYPE=Ethernet
+# Assign IP from DHCP
+BOOTPROTO=dhcp
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=enp0s8
+UUID=e5a5d8e9-b5d4-4b5e-bd1e-6ebcd0144dfa
+# Enable interface at system boot
+ONBOOT=yes
+
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+==== Step2 ====
+1. Configure Networking
+Open the network configuration file located at /etc/sysconfig/network-scripts/ifcfg-enp0s8
+vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
+Add placeholder text that will be filled in after server provisioning.
+HWADDR=00:00:00:00:00:00
+TYPE=Ethernet
+# Enabled Static IP Address
+BOOTPROTO=none
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=enp0s8
+UUID=e5a5d8e9-b5d4-4b5e-bd1e-6ebcd0144dfa
+# Enable interface at system boot
+ONBOOT=yes
+# IP Address
+IPADDR=IP-Address
+# Subnet Mask
+NETMASK=255.255.255.0
+# Default Gateway
+GATEWAY=IP-Gateway
+# Primary DNS
+DNS1=IP-DNS-Server1
+# Secondary DNS
+DNS2=IP-DNS-Server2
+# Search Domain
+DOMAIN=yule.gov.net
+
+Text ((This is a footnote))
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Conclusion ====
+
+Text
+
+===== Notes =====
+Filed under: {{tagpage>networking}}
+
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

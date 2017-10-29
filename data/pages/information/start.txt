@@ -1,0 +1,6 @@
+===== Information =====
+<accordion>
+<panel title="Information" class="panel-collapse collapse in">
+{{indexmenu>:information#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

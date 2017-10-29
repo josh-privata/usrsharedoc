@@ -1,0 +1,983 @@
+Linux Commands - Overview and Examples
+
+On this page
+
+Adduser/Addgroup
+Arch
+Cal/Ncal
+Cat
+Cd
+Chgrp
+Chmod
+Chown
+Cksum
+Clear
+Cmp
+Comm
+Cp
+Csplit
+Date
+Dd
+Df
+Diff3
+Dir
+Dirname
+Dmidecode
+Du
+Echo
+Ed
+Eject
+Env
+Exit
+Expand
+Expr
+Factor
+Fgrep
+Find
+Fmt
+Fold
+Free
+Grep
+Groups
+Gzip
+Gunzip
+Head
+Hostname
+Id
+Join
+Kill
+Killall
+Last
+Ldd
+Ln
+Locate
+Logname
+Ls
+Lshw
+Lscpu
+Lsof
+Man
+Md5sum
+Mkdir
+Mkfifo
+More
+Mv
+Nano
+Nice
+Nl
+Nm
+Nproc
+Od
+Passwd
+Paste
+Pidof
+Ping
+Ps
+Pstree
+Pwd
+Rm
+Rmdir
+Scp
+Sdiff
+Sed
+Seq
+Sha1sum
+Shutdown
+Size
+Sleep
+Sort
+Split
+Ssh
+Stat
+Strings
+Su
+Sudo
+Sum
+Tac
+Tail
+Talk
+Tar
+Tee
+Test
+Time
+Top
+Touch
+Tr
+Tty
+Uname
+Uniq
+Unexpand
+Uptime
+Users
+Vdir
+Vim
+W
+Wall
+Watch
+Wc
+Wget
+Whatis
+Which
+Who
+Whereis
+Whoami
+Xargs
+Yes
+The command line is one of the most powerful features of Linux. There exists a sea of Linux command line tools, allowing you to do almost everything you can think of doing on your Linux PC. However, this usually creates a problem: with so many commands available to use, you don't know where and how to start learning them, especially when you are beginner. 
+If you are facing this issue, and are looking for an easy way to start off your command line journey in Linux, you've come to the correct place, as in this article, we will introduce you to a host of popular and useful Linux commands. The article is organized in a way that you will quickly learn what each command does through an easy to understand example. To learn more about a command, click on the 'More...' link at the end of its explanation.
+Adduser/Addgroup
+The adduser and addgroup commands lets you add a new user and group to a system, respectively. Here's an example for adduser:
+$ sudo adduser testuser
+Adding user `testuser' ...
+Adding new group `testuser' (1003) ...
+Adding new user `testuser' (1003) with group `testuser' ...
+Creating home directory `/home/testuser' ...
+Copying files from `/etc/skel' ...
+Enter new UNIX password:
+
+Arch
+The arch command is used to print the machine's architecture. For example:
+$ arch
+i686
+
+Not sure what 'i686' means? Head here.
+Cal/Ncal
+The cal and ncal commands display a calendar in the output.
+$ cal
+March 2017 
+Su Mo Tu We Th Fr Sa 
+1 2 3 4 
+5 6 7 8 9 10 11 
+12 13 14 15 16 17 18 
+19 20 21 22 23 24 25 
+26 27 28 29 30 31
+
+$ ncal
+March 2017 
+Su 5 12 19 26 
+Mo 6 13 20 27 
+Tu 7 14 21 28 
+We 1 8 15 22 29 
+Th 2 9 16 23 30 
+Fr 3 10 17 24 31 
+Sa 4 11 18 25
+
+More examples of the cal and ncal commands:
+10 Practical Examples of Linux Cal/NCal command for Beginners
+Cat
+The cat command allows you to concatenate files, or data provided on standard input, and print it on the standard output. In layman terms, the command prints the information provided to it, whether through stdin or in the form a file.
+$ cat test.txt
+Hello...how are you?
+
+More CAT command examples:
+10 Linux Cat Command Examples for Beginners
+Cd
+The cd command is used to change user's present working directory.
+$ cd /home/himanshu/
+
+More CD command examples:
+Linux cd command tutorial for beginners (8 Examples)
+Chgrp
+The chgrp command allows you to change the group ownership of a file. The command expects new group name as its first argument and the name of file (whose group is being changed) as second argument.
+$ chgrp howtoforge test.txt
+
+More: Linux Chgrp Command for Beginners (5 Examples)
+Chmod
+The chmod command lets you change access permissions for a file. For example, if you have a binary file (say helloWorld), and you want to make it executable, you can run the following command:
+chmod +x helloWorld
+
+More: Linux chmod command tutorial for beginners
+Chown
+The chown command allows you to change the ownership and group of a file. For example, to change the owner of a file test.txt to root, as well as set its group as root, execute the following command: 
+chown root:root test.txt
+
+More: Linux Chown Command Tutorial for Beginners (7 Examples)
+Cksum
+The cksum command prints the CRC checksum and byte count for the input file. 
+$ cksum test.txt
+3741370333 20 test.txt
+
+Not sure what checksum is? Head here.
+More about the Chksum command: Linux cksum command explained for beginners (with examples)
+Clear
+The clear command is used to clear the terminal screen.
+$ clear
+
+More: Linux clear command tutorial for beginners (3 examples)
+Cmp
+The cmp command is used to perform byte-by-byte comparison of two files.
+$ cmp file1 file2
+file1 file2 differ: byte 1, line 1
+
+More CMP command examples:
+Linux cmp command tutorial for beginners (7 examples)
+Comm
+The comm command is used to compare two sorted files line-by-line. For example, if 'file1' contains numbers 1-5 and 'file2' contains number 4-8, here's what the 'comm' command produces in this case:
+$ comm file1 file2
+1
+2
+3
+                     4
+                     5
+         6
+         7
+         8
+
+Linux comm command tutorial for beginners (5 examples)
+Cp
+The cp command is used for copying files and directories.
+$ cp test.txt /home//himanshu/Desktop/
+
+More: Linux cp command tutorial for beginners (8 examples)
+Csplit
+The csplit command lets you split a file into sections determined by context lines. For example, to split a file into two where the first part contains 'n-1' lines and the second contains the rest, use the following command:
+$ csplit file1 [n]
+
+The two parts are saved as files with names 'xx00' and 'xx01', respectively.
+More: Linux Csplit Command Explained for Beginners (6 Examples)
+Date
+The date command can be used to print (or even set) the system date and time.
+$ date
+Tue Feb 28 17:14:57 IST 2017
+
+More: Linux Date Command Tutorial for Beginners (8 Examples)
+Dd
+The dd command copies a file, converting and formatting according to the operands. For example, the following command creates an image of /dev/sda partition.
+dd if=/dev/sda of=/tmp/dev-sda-part.img
+
+More: Linux dd command explained for beginners (8 examples)
+Df
+The df command displays the file system disk space usage in output.
+$ df /dev/sda1
+Filesystem 1K-blocks Used     Available Use% Mounted on
+/dev/sda1  74985616  48138832 23014620  68%     /
+
+More: Linux df Command Tutorial for Beginners (8 Examples)
+Diff
+The diff command lets you compare two files line by line.
+$ diff file1 file2
+
+Diff3
+The diff3 command, as the name suggests, allows you to compare three files line by line.
+diff3 file1 file2 file3
+
+Dir
+The dir command lists directory contents. For example:
+$ dir
+test1 test2 test.7z test.zip
+
+More: Linux dir command for beginners (10 examples)
+Dirname
+The dirname command strips last component from a file name/path. In layman's terms, you can think of it as a tool that, for example, removes file name from the file's absolute path.
+$ dirname /home/himanshu/file1
+/home/himanshu
+
+More: Linux dirname command explained for beginners (4 examples)
+Dmidecode
+The dmidecode command prints a system's DMI (aka SMBIOS) table contents in a human-readable format.
+$ sudo dmidecode
+# dmidecode 2.12
+SMBIOS 2.6 present.
+50 structures occupying 2056 bytes.
+Table at 0x000FCCA0.
+Handle 0x0000, DMI type 0, 24 bytes
+BIOS Information
+Vendor: American Megatrends Inc.
+Version: 080015 
+Release Date: 08/22/2011
+...
+...
+...
+
+Du
+The du command displays disk usage of files present in a directory as well as its sub-directories.
+$ du /home/himanshu/Desktop/
+92 /home/himanshu/Desktop/Downloads/meld/meld/ui
+88 /home/himanshu/Desktop/Downloads/meld/meld/vc
+56 /home/himanshu/Desktop/Downloads/meld/meld/matchers
+12 /home/himanshu/Desktop/Downloads/meld/meld/__pycache__
+688 /home/himanshu/Desktop/Downloads/meld/meld
+16 /home/himanshu/Desktop/Downloads/meld/bin
+328 /home/himanshu/Desktop/Downloads/meld/data/ui
+52 /home/himanshu/Desktop/Downloads/meld/data/icons/svg
+
+More: Linux du Command Tutorial for Beginners (10 Examples)
+Echo
+The echo command displays whatever input text is given to it.
+$ echo hello hi
+hello hi
+
+More: Linux echo Command Tutorial for Beginners (5 Examples)
+Ed
+ed is a line-oriented text editor. 
+$ ed
+
+Eject
+The eject command lets you eject removable media (typically, a CD ROM or floppy disk)
+$ eject
+
+Env
+The env command not only displays the current environment, but also lets you edit it.
+$ env
+
+More: Linux env Command Tutorial For Beginners (5 Examples)
+Exit
+The exit command causes the shell to exit.
+$ exit
+
+More: Linux exit Command Explained for Beginners (With Examples)
+Expand
+The expand command converts tabs present in the input file(s) into spaces, and writes the file contents to standard output.
+$ expand file1
+
+More: Linux expand Command Tutorial For Beginners (with Examples)
+Expr
+The expr command evaluates expressions. For example:
+$ expr 1 + 2
+3
+
+More: Linux expr command tutorial for beginners (with examples)
+Factor
+The factor command prints the prime factors of the input number.
+$ factor 135
+135: 3 3 3 5
+
+More: Linux factor command tutorial for beginners (with examples)
+Fgrep
+The fgrep command is equivalent to the grep command when executed with the -F command line option. The tool is also known as fixed or fast grep as it doesn't treat regular expression metacharacters as special, processing the information as simple string instead.
+For example, if you want to search for dot (.) in a file, and don't want grep to interpret it as a wildcard character, use fgrep in the following way:
+$ fgrep "." [file-name]
+
+More: Linux fgrep Command Tutorial for Beginners (with Examples)
+Find
+The find command lets you search for files in a directory as well as its sub-directories.
+$ find test*
+test
+test1
+test2
+test.7z
+test.c
+test.txt
+
+More examples for the Linux Find command:
+14 Practical Examples of Linux Find Command for Beginners
+Searching For Files And Folders With The find Command
+Finding Files On The Command Line
+Fmt
+fmt is a simple optimal text formatter. It reformats each paragraph in the file passed to it, and writes the file contents to standard output.
+$ fmt file1
+
+More: Linux fmt command - usage and examples
+Fold
+The fold command wraps each input line to fit in specified width.
+$ fold -w 10
+Hi my name is himanshu Arora
+
+Hi my name
+is himans
+hu Arora
+
+More: Linux fold command tutorial for beginners (with examples)
+Free
+The free command displays the amount of free and used memory in the system.
+$ free
+       total           used  free   shared buffers cached
+Mem:   1800032       1355288 444744 79440   9068   216236
+-/+ buffers/cache: 1129984 670048
+Swap:  1832956      995076  837880
+
+Grep
+The grep command searches for a specified pattern in a file (or files) and displays in output lines containing that pattern.
+$ grep Hello test.txt
+Hello...how are you?
+
+More tutorials and examples for the Linux Grep command:
+How to use grep to search for strings in files on the shell
+How to perform pattern search in files using Grep
+Groups
+The groups command displays the name of groups a user is part of.
+$ groups himanshu
+himanshu : himanshu adm cdrom sudo dip plugdev lpadmin sambashare
+
+Gzip
+The gzip command compresses the input file, replacing the file itself with one having a .gz extension.
+$ gzip file1
+
+More: Linux Gzip Command Tutorial for Beginners (7 Examples)
+Gunzip
+Files compressed with gzip command can be restored to their original form using the gunzip command.
+$ gunzip file1.gz
+
+Head
+The head command displays the first 10 lines of the file to standard output
+$ head CHANGELOG.txt 
+BEEBEEP (Secure Lan Messanger)
+BeeBEEP 
+2.0.4
+- Some GUI improvements (new icons, file sharing tree load faster)
+- Always Beep on new message arrived (option)
+- Favorite users (right click on user and enable star button) is on top of the list
+- improved group usability
+- Offline users can be removed from list (right click on an offline user in list and then remove)
+- Clear all files shared (option)
+- Load minimized at startup (option)
+
+Hostname
+The hostname command not only displays the system's host name, but lets them set it as well.
+$ hostname
+himanshu-desktop
+
+Id
+The id command prints user and group information for the current user or specified username.
+$ id himanshu
+uid=1000(himanshu) gid=1000(himanshu) groups=1000(himanshu),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lpadmin),124(sambashare)
+
+Join
+The join command allows you to join lines of two files on a common field (default is first).
+join [OPTION]... FILE1 FILE2
+
+Want to learn more about this command? Head here.
+Kill
+The kill command, as the name suggests, helps user kill a process by sending the TERM signal to it.
+$ kill [process-id]
+
+Killall
+The killall command lets you kill a process by name. Unlike kill - which requires ID of the process to be killed - killall just requires the name of the process.
+$ killall nautilus
+
+Last
+The last command shows listing of last logged in users.
+$ last
+himanshu pts/11 :0 Thu Mar 2 09:46 still logged in 
+himanshu pts/1 :0 Thu Mar 2 09:46 still logged in 
+himanshu :0 :0 Thu Mar 2 09:42 still logged in 
+reboot system boot 4.4.0-62-generic Thu Mar 2 09:41 - 10:36 (00:54) 
+himanshu pts/14 :0 Wed Mar 1 15:17 - 15:52 (00:35) 
+himanshu pts/13 :0 Wed Mar 1 14:40 - down (08:06)
+
+Ldd
+The ldd command displays in output dependencies of a shared library.
+$ ldd /lib/i386-linux-gnu/libcrypt-2.19.so
+linux-gate.so.1 => (0xb77df000)
+libc.so.6 => /lib/i386-linux-gnu/libc.so.6 (0xb75da000)
+/lib/ld-linux.so.2 (0x80088000)
+
+Ln
+The ln command is used for creating link between files. For example, the following command would create a link named 'lnk' to a file with name 'test.txt':
+$ ln test.txt lnk
+
+Locate
+The locate command helps user find a file by name.
+$ locate [file-name]
+
+Logname
+The logname command prints the user-name of the current user.
+$ logname
+himanshu
+
+Ls
+The ls command lists contents of a directory in output.
+$ ls progress
+capture.png hlist.o progress progress.h sizes.c
+hlist.c LICENSE progress.1 progress.o sizes.h
+hlist.h Makefile progress.c README.md sizes.o
+
+More examples of the LS command:
+16 Practical Examples of Linux LS command for Beginners
+Lshw
+The lshw command extracts and displays detailed information on the hardware configuration of the machine.
+$ sudo lshw
+[sudo] password for himanshu: 
+himanshu-desktop 
+description: Desktop Computer
+product: To Be Filled By O.E.M. (To Be Filled By O.E.M.)
+vendor: To Be Filled By O.E.M.
+version: To Be Filled By O.E.M.
+serial: To Be Filled By O.E.M.
+width: 32 bits
+capabilities: smbios-2.6 dmi-2.6 smp-1.4 smp
+...
+...
+..
+
+Lscpu
+The lscpu command displays in output system's CPU architecture information (such as number of CPUs, threads, cores, sockets, and more).
+$ lscpu
+Architecture: i686
+CPU op-mode(s): 32-bit, 64-bit
+Byte Order: Little Endian
+CPU(s): 1
+On-line CPU(s) list: 0
+Thread(s) per core: 1
+Core(s) per socket: 1
+Socket(s): 1
+Vendor ID: AuthenticAMD
+CPU family: 16
+Model: 6
+Stepping: 3
+CPU MHz: 2800.234
+BogoMIPS: 5600.46
+Virtualization: AMD-V
+L1d cache: 64K
+L1i cache: 64K
+L2 cache: 1024K
+
+Lsof
+The lsof command displays information (on stdout) related to files opened by processes. Files can be of any type, including regular files, directories, block special files, character special files, executing text reference, libraries, and stream/network files.
+lsof
+
+Read more:
+Linux lsof command tutorial for beginners (10 examples)
+Man
+man lets you access reference manual for commands, programs/utilities, as well as functions.
+$ man ls
+
+Md5sum
+The md5sum command lets you print  or check MD5 (128-bit) checksums.
+$ md5sum test.txt
+ac34b1f34803a6691ff8b732bb97fbba test.txt
+
+Mkdir
+The mkdir command lets you create directories.
+$ mkdir [dir-name]
+
+Mkfifo
+The mkfifo command is used to create named pipes.
+$ mkfifo [pipe-name]
+
+More
+more is basically a filter for paging through text one screenful at a time.
+$ cat [large-file] | more
+
+Mv
+The mv command lets you either move a file from one directory to another, or rename it.
+$ mv test.txt /home/himanshu/Desktop/ 
+
+Nano
+The nano command in Linux launches the 'nano' editor. The editor is designed to emulate the features and user-friendliness of the UW Pico text editor.
+$ nano
+
+or
+$ nano [file-name]
+
+More about the Nano Editor:
+Nano editor usage and examples.
+Nice
+The nice command lets you run a program with modified scheduling priority.
+$ nice -n[niceness-value] [program]
+
+$ nice -n15 vim
+
+Nl
+The nl command writes contents of a file to output, and prepends each line with line number.
+$ nl file1
+1 Hi
+2 How are you
+3 Bye
+
+Nm
+The nm command is used to display symbols from object files.
+$ nm test
+0804a020 B __bss_start
+0804841d T compare
+0804a020 b completed.6591
+0804a018 D __data_start
+0804a018 W data_start
+08048360 t deregister_tm_clones
+080483d0 t __do_global_dtors_aux
+08049f0c t __do_global_dtors_aux_fini_array_entry
+0804a01c D __dso_handle
+08049f14 d _DYNAMIC
+0804a020 D _edata
+0804a024 B _end
+080484e4 T _fini
+080484f8 R _fp_hw
+080483f0 t frame_dummy
+...
+...
+...
+
+Nproc
+The nproc command displays the number of processing units available to the current process.
+$ nproc
+1
+
+Od
+The od command lets you dump files in octal as well as some other formats.
+$ od /bin/ls
+0000000 042577 043114 000401 000001 000000 000000 000000 000000
+0000020 000002 000003 000001 000000 140101 004004 000064 000000
+0000040 122104 000001 000000 000000 000064 000040 000011 000050
+0000060 000034 000033 000006 000000 000064 000000 100064 004004
+0000100 100064 004004 000440 000000 000440 000000 000005 000000
+0000120 000004 000000 000003 000000 000524 000000 100524 004004
+...
+...
+...
+
+Passwd
+The passwd command is used for changing passwords for user accounts.
+$ passwd himanshu
+Changing password for himanshu.
+(current) UNIX password:
+
+Paste
+The paste command lets you merge lines of files. For example, if 'file1' contains the following lines:
+$ cat file1
+Hi
+My name is
+Himanshu
+Arora
+I 
+Am
+a 
+Linux researcher
+and tutorial 
+writer
+
+Then the following 'paste' command will join all the lines of the file:
+$ paste -s file1
+Hi My name is Himanshu Arora I Am a Linux researcher and tutorial writer
+
+Pidof
+The pidof command gives you the process ID of a running program/process.
+$ pidof nautilus
+2714
+
+Ping
+The ping command is used to check whether or not a system is up and responding. It sends ICMP ECHO_REQUEST to network hosts.
+$ ping howtoforge.com
+PING howtoforge.com (104.24.0.68) 56(84) bytes of data.
+64 bytes from 104.24.0.68: icmp_seq=1 ttl=58 time=47.3 ms
+64 bytes from 104.24.0.68: icmp_seq=2 ttl=58 time=51.9 ms
+64 bytes from 104.24.0.68: icmp_seq=3 ttl=58 time=57.4 ms
+
+Ps
+The ps command displays information (in the form of a snapshot) about the currently active processes.
+$ ps
+PID TTY TIME CMD
+4537 pts/1 00:00:00 bash
+20592 pts/1 00:00:00 ps
+
+Pstree
+The pstree command produces information about running processes in the form of a tree.
+$ pstree
+init???ModemManager???2*[{ModemManager}]
+??NetworkManager???dhclient
+? ??dnsmasq
+? ??3*[{NetworkManager}]
+??accounts-daemon???2*[{accounts-daemon}]
+??acpid
+??atop
+
+Pwd
+The pwd command displays the name of current/working directory.
+$ pwd
+/home/himanshu
+
+Rm
+The rm command lets you remove files and/or directories.
+$ rm [file-name]
+
+Rmdir
+The rmdir command allows you delete empty directories.
+$ rmdir [dir-name]
+
+Scp
+The scp command lets you securely copy files between systems on a network.
+$ scp [name-and-path-of-file-to-transfer] [user]@[host]:[dest-path]
+
+Sdiff
+The sdiff command lets you perform a side-by-side merge of differences between two files.
+$ sdiff file1 file2
+
+Sed
+sed is basically a  stream editor that allows users to perform basic text transformations on an input stream (a file or input from a pipeline).
+$ echo "Welcome to Howtoforge" | sed -e 's/Howtoforge/HowtoForge/g'
+Welcome to HowtoForge
+
+Seq
+The seq commands prints numbers from FIRST to LAST, in steps of INCREMENT. For example, if FIRST is 1, LAST is 10, and INCREMENT is 2, then here's the output this command produces:
+$ seq 1 2 10
+1
+3
+5
+7
+9
+
+Sha1sum
+The sha1sum command is used to print or check SHA1 (160-bit) checksums.
+$ sha1sum test.txt
+955e48dfc9256866b3e5138fcea5ea0406105e68 test.txt
+
+Shutdown
+The shutdown command lets user shut the system in a safe way.
+$ shutdown
+
+Size
+The size command lists the section sizes as well as the total size for an object or archive file.
+$ size test
+text data bss dec hex filename
+1204 280 4 1488 5d0 test
+
+Sleep
+The sleep command lets user specify delay for a specified amount of time. You can use it to delay an operation like:
+$ sleep 10; shutdown
+
+Sort
+The sort command lets you sort lines of text files. For example, if 'file2' contains the following names:
+$ cat file2
+zeus
+kyan
+sam
+adam
+
+Then running the sort command produces the following output:
+$ sort file2
+adam
+kyan
+sam
+zeus
+
+Split
+The split command, as the name suggests, splits a file into fixed-size pieces. By default, files with name like xaa, xab, and xac are produced.
+$ split [file-name]
+
+Ssh
+ssh is basically OpenSSH SSH client. It provides secure encrypted communication between two untrusted hosts over an insecure network.
+$ ssh [user-name]@[remote-server]
+Stat
+The stat command displays status related to a file or a file-system.
+$ stat test.txt
+File: ‘test.txt’
+Size: 20 Blocks: 8 IO Block: 4096 regular file
+Device: 801h/2049d Inode: 284762 Links: 2
+Access: (0664/-rw-rw-r--) Uid: ( 0/ root) Gid: ( 0/ root)
+Access: 2017-03-03 12:41:27.791206947 +0530
+Modify: 2017-02-28 16:05:15.952472926 +0530
+Change: 2017-03-02 11:10:00.028548636 +0530
+Birth: -
+
+Strings
+The strings command displays in output printable character sequences that are at least 4 characters long. It is used to search for printable text (strings) in binary files. For example, when a binary executable 'test' was passed as an argument to this command, following output was produced:
+$ strings test
+/lib/ld-linux.so.2
+libc.so.6
+_IO_stdin_used
+puts
+__libc_start_main
+__gmon_start__
+GLIBC_2.0
+PTRh
+QVhI
+[^_]
+EQUAL 
+;*2$"
+GCC: (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
+....
+....
+....
+
+Su
+The su command lets you change user-identity. Mostly, this command is used to become root or superuser.
+$ su [user-name]
+
+Sudo
+The sudo command lets a permitted user run a command as another user (usually root or superuser).
+$ sudo [command]
+
+Sum
+The sum command prints checksum and block counts for each input file.
+$ sum readme.txt
+45252 5
+
+Tac
+The tac command prints input files in reverse. Functionality-wise, it does the reverse of what the cat command does.
+$ cat file2
+zeus
+kyan
+sam
+adam
+
+$ tac file2
+adam
+sam
+kyan
+zeus
+
+Tail
+The tail command displays in output the last 10 lines of a file.
+$ tail [file-name]
+
+Talk
+The talk command lets users talk with each other.
+$ talk [user-name]
+
+Tar
+tar is an archiving utility that lets you create as well as extract archive files. For example, to create archive.tar from files 'foo' and 'bar', use the following command:
+$ tar -cf archive.tar foo bar
+
+More...
+Tee
+The tee command reads from standard input and write to standard output as well as files.
+$ uname | tee file2
+Linux
+
+$ cat file2
+Linux
+
+Test
+The test command checks file types and compare values. For example, you can use it in the following way:
+$ test 7 -gt 5 && echo "true"
+true
+
+Time
+The time command is used to summarize system resource usage of a program. For example:
+$ time ping google.com
+PING google.com (216.58.220.206) 56(84) bytes of data.
+64 bytes from del01s08-in-f14.1e100.net (216.58.220.206): icmp_seq=1 ttl=52 time=44.2 ms
+^C
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 44.288/44.288/44.288/0.000 ms
+real 0m0.676s
+user 0m0.000s
+sys 0m0.000s
+
+Top
+The top command gives  a dynamic real-time view of a running system (in terms of its processes). For example:
+$ top
+
+Touch
+The touch command lets you change file timestamps (the access and modification times). When name of a non-existent file is passed as an argument, that file gets created.
+$ touch [file-name]
+
+Tr
+The tr command can be used to translate/squeeze/delete characters. For example, here's how you can use it to convert lowercase characters to uppercase:
+$ echo 'howtoforge' | tr "[:lower:]" "[:upper:]"
+HOWTOFORGE
+
+Tty
+The tty command prints the filename of the terminal connected to standard input.
+$ tty
+/dev/pts/10
+
+Uname
+The uname command prints certain system information.
+$ uname -a
+Linux himanshu-desktop 4.4.0-62-generic #83~14.04.1-Ubuntu SMP Wed Jan 18 18:10:26 UTC 2017 i686 athlon i686 GNU/Linux
+
+Uniq
+The Uniq command is used to report or omit repeated lines. For example, if 'file2' contains the following data:
+$ cat file2
+Welcome to HowtoForge
+Welcome to HowtoForge
+A Linux tutorial website
+Thanks
+
+Then you can use the uniq command to omit the repeated line.
+$ uniq file2
+Welcome to HowtoForge
+A Linux tutorial website
+Thanks
+
+Read more: Linux Uniq Command Tutorial for Beginners (10 examples)
+Unexpand
+The unexpand command converts spaces present in the input file(s) into tabs, and writes the file contents to standard output.
+$ unexpand file1
+
+Uptime
+The uptime command tells how long the system has been running.
+$ uptime
+15:59:59 up 6:20, 4 users, load average: 0.81, 0.92, 0.82
+
+Users
+The users command displays in output the usernames of users currently logged in to the current host.
+$ users
+himanshu himanshu himanshu himanshu
+
+Vdir
+The vdir command lists information about contents of a directory (current directory by default).
+$ vdir
+total 1088
+-rw-rw-r-- 1 himanshu himanshu 4850 May 20 2015 test_backup.pdf
+-rw-rw-r-- 1 himanshu himanshu 2082 May 28 2015 test-filled.pdf
+-rw-rw-r-- 1 himanshu himanshu 7101 May 28 2015 test.pdf 
+
+Vim
+vim is basically a text/programming editor. The name 'vim' stands for Vi IMproved as the editor is upwards compatible to the Vi editor.
+$ vim [file-name]
+
+W
+The w command displays information about the users currently on the machine, and their processes.
+$ w
+16:18:07 up 6:39, 4 users, load average: 0.07, 0.32, 0.53
+USER TTY FROM LOGIN@ IDLE JCPU PCPU WHAT
+himanshu :0 :0 09:39 ?xdm? 1:08m 0.25s init --user
+himanshu pts/0 :0 09:41 6:36m 0.84s 7.84s gnome-terminal
+himanshu pts/10 :0 14:51 0.00s 0.16s 0.00s w
+himanshu pts/11 :0 15:41 35:19 0.05s 0.05s bash
+
+Wall
+The wall command lets you write and send a message to other users that are currently logged in.
+$ wall [your-message]
+
+Watch
+The watch command can be used to monitor a program's output. It runs the program repeatedly, displaying its output and errors. For example:
+$ watch date
+
+Wc
+The wc command prints newline, word, and byte counts for a file.
+$ wc test.txt
+0 3 20 test.txt
+
+Wget
+The wget command line tool in Linux lets you perform a non-interactive download of files from the Web.
+Here's how you can use it:
+wget [URL]
+
+Read more about the wget command here.
+Whatis
+The whatis command displays single-line manual page descriptions.
+$ whatis mkdir
+mkdir (1) - make directories
+mkdir (2) - create a directory
+mkdir (1posix) - make directories
+
+Which
+The which command basically lets you locate a command - the file and the path of the file that gets executed. For example:
+$ which date
+/bin/date
+
+Who
+The who command shows who is logged on.
+$ who
+himanshu :0 2017-03-03 09:39 (:0)
+himanshu pts/0 2017-03-03 09:41 (:0)
+himanshu pts/10 2017-03-03 14:51 (:0)
+himanshu pts/11 2017-03-03 15:41 (:0)
+
+Whereis
+The whereis command shows in output locations of the binary, source, and manual page files for a command.
+$ whereis ls
+ls: /bin/ls /usr/share/man/man1/ls.1posix.gz /usr/share/man/man1/ls.1.gz
+
+Whoami
+The whoami command prints effective userid of the current user.
+$ whoami
+himanshu
+
+Xargs
+The xargs command builds and executes command lines from standard input. In layman's terms, it reads items from stdin and executes a command passed to it as an argument. For example, here's how you can use xargs to find the word "Linux" in the files whose names are passed to it as input.
+$ xargs grep "Linux"
+file1
+file2
+file3
+file1:Linux researcher
+file2:A Linux tutorial website
+file3:Linux is opensource
+
+More...
+Yes
+The Yes command outputs a string repeatedly until killed.
+$ yes [string] 

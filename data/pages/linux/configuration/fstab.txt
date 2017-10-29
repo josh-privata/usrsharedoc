@@ -1,0 +1,132 @@
+====== Title ======
+
+{{tag>linux configuration }}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+===== Procedure =====
+
+==== Step1 ====
+2. Configure fstab
+Open the /etc/fstab file
+vi /etc/fstab
+And make the following changes
+# <file system> | <mount point> | <type> | <options> | <dump> | <pass>
+#-----------------------------------------------------------------------
+UUID=fad750a4-4322-482f-9235-4842e3c79775 /boot ext4 defaults,nosuid,nodev             1 2
+UUID=552cff44-c362-4298-85ff-7f6052fca552 /     xfs  defaults,nosuid,nodev             1 2
+UUID=8ae53gh4-3456-4679-876f-f655656ca552 /tmp  xfs  defaults,nosuid,nodev,noexec 1 2
+UUID=40b25809-7d6d-42c8-afe6-d12780c3e250 /opt  xfs  defaults,nosuid,nodev,noexec 1 2
+UUID=34ec6bfd-b5f9-4780-97be-582692eddb26 none  swap sw                         0 0
+#-----------------------------------------------------------------------
+## NFS SHARES ##
+## TrueNAS Server ##
+10.0.2.15:mnt/storage/files/home /home      nfs4 soft,rw,nolock,_netdev,auto 
+10.0.2.15:mnt/storage/files/docs /documents nfs4 soft,rw,nolock,_netdev,auto
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+==== Step2 ====
+
+Text ((This is a footnote))
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Conclusion ====
+
+Text
+
+===== Notes =====
+Filed under: {{tagpage>networking}}
+
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

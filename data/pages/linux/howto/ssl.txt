@@ -1,0 +1,137 @@
+====== Title ======
+
+{{tag>linux how_to }}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+
+===== Procedure =====
+==== Step1 ====
+Configure SSL Certificate
+(How To Create a Self-Signed SSL Certificate for Nginx on CentOS 7, n.d.)
+Create the directory to hold the SSL certificates and apply secure permissions
+sudo mkdir /etc/ssl/private
+sudo chmod 700 /etc/ssl/private
+Create a self-signed X.509 certificate/key pair set to expire in 365 days using a 4096 bit RSA key with the name yule-external.key and yule-external.crt
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/ssl/private/yule-external.key -out /etc/ssl/certs/yule-external.crt
+At the prompts, enter the following details
+Country Name (2 letter code) [AU]:AU
+State or Province Name (full name) [Some-State]:Victoria
+Locality Name (eg, city) []:The City of Yule 
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:The City of Yule 
+Organizational Unit Name (eg, section) []:Web Server
+Common Name (e.g. server FQDN or YOUR name) []:yule.gov.au
+Email Address []:admin@yule.gov.au
+Create a Diffie-Hellman certificate and secure the file
+openssl dhparam -out /etc/ssl/certs/yule.gov.au.pem 4096
+sudo chmod 700 /etc/ssl/certs/yule.gov.au.pem
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step2 ====
+
+Text ((This is a footnote))
+
+''monospaced''
+
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+**bold**, //italic//, __underlined__
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+===== Notes =====
+Text
+
+Filed under: {{tagpage>networking}}
+Created by @USER@ ( @MAIL@ ) on @DATE@

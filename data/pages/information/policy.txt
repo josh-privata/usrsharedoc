@@ -1,0 +1,123 @@
+====== Rules, Conventions and Policies ======
+{{tag>policy file_conventions style_guide templates}}
+
+=== Purpose ===
+This page sets out the following;
+  *  File Conventions, locations and naming
+  *  The current Style Guide and Elements
+  *  Templates used for various pages
+
+===== File Conventions =====
+==== index.txt ====
+[[:index|Link to Page]]
+=== Purpose === 
+Each namespace includes a index.txt file. This file is there to provide an index of all pages in the 
+current namespace.
+
+==== start.txt ==== 
+[[:start|Link to Page]]
+=== Purpose ===
+Each namespace includes a start.txt file. This file is there to provide an introduction to the namespace and
+links to main topics included within the namespace.
+
+==== sidebar.txt ==== 
+[[:sidebar|Link to Page]]
+=== Purpose ===
+This file is included within the root directory to provide the data for the Left Sidebar. This sidebar is 
+static through all namespaces.
+
+==== rss.txt ==== 
+[[information:rss|Link to Page]]
+=== Purpose ===
+This file is included within the root directory to provide RSS feed data.
+
+//This is not yet implemented.//
+
+==== policy.txt ==== 
+[[information:policy|Link to Page]]
+=== Purpose ===
+This file is included within the root directory to provide the important information relevant to all namespaces.
+
+==== namespace.txt ==== 
+[[information:namespaces|Link to Page]]
+=== Purpose ===
+This file is included within the information directory to provide a list of all namespaces and pages within the wiki.
+
+==== template-howto.txt ==== 
+[[information:template-howto|Link to Page]]
+=== Purpose ===
+To provide a template for all instructional guides and examples uasage.
+
+==== template-software.txt ====
+[[information:template-software|Link to Page]]
+=== Purpose ===
+To provide a template for all installation guides.
+
+==== template-configuration.txt ====
+[[information:template-configuration|Link to Page]]
+=== Purpose ===
+To provide a template for all configuration guides.
+
+==== template-article.txt ==== 
+[[information:template-article|Link to Page]]
+=== Purpose ===
+To provide a template for all articles.
+
+==== template-short.txt ==== 
+[[information:template-short|Link to Page]]
+=== Purpose ===
+To provide a template for all short articles.
+
+==== template-programming.txt ==== 
+[[information:template-programming|Link to Page]]
+=== Purpose ===
+To provide a template for all programming guides.
+
+===== Style Guide =====
+[[information:styleguide|Link to Page]]
+=== Purpose === 
+To provide a list of elements and common formatting techniques to ensure a unified appearance across all 
+pages
+
+===== Templates =====
+==== How-To ====
+This template is used for all instructional guides.
+
+[[information:template-howto|Link to Page]]
+
+//{{count>how_to}}//
+
+==== Software ====
+This template is used for all software installation guides.
+
+[[information:template-software|Link to Page]]
+
+//{{count>software}}//
+
+==== Configuration ====
+This template is used for all configuration guides.
+
+[[information:template-configuration|Link to Page]]
+
+//{{count>configuration}}//
+
+==== Article ====
+This template is used for all general articles.
+
+[[information:template-article|Link to Page]]
+
+//{{count>article}}//
+
+==== Short ====
+This template is used for all short articles.
+
+[[information:template-short|Link to Page]]
+
+//{{count>short}}//
+
+==== Programming ====
+This template is used for all programming guides.
+
+[[information:template-programming|Link to Page]]
+
+//{{count>programming}}//

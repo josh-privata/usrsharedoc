@@ -1,0 +1,6 @@
+===== Web =====
+<accordion>
+<panel title="Web" class="panel-collapse collapse">
+{{indexmenu>:programming:web#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

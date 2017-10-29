@@ -1,0 +1,60 @@
+a:2:{s:7:"current";a:7:{s:4:"date";a:2:{s:7:"created";i:1508649771;s:8:"modified";i:1508651634;}s:4:"user";s:0:"";s:7:"creator";s:0:"";s:5:"title";s:7:"Welcome";s:11:"description";a:2:{s:15:"tableofcontents";a:9:{i:0;a:4:{s:3:"hid";s:7:"welcome";s:5:"title";s:7:"Welcome";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:8:"software";s:5:"title";s:8:"Software";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:5:"linux";s:5:"title";s:5:"Linux";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:3;a:4:{s:3:"hid";s:11:"programming";s:5:"title";s:11:"Programming";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:4;a:4:{s:3:"hid";s:6:"python";s:5:"title";s:6:"Python";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:5;a:4:{s:3:"hid";s:3:"php";s:5:"title";s:3:"PHP";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:6;a:4:{s:3:"hid";s:3:"web";s:5:"title";s:3:"Web";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:7;a:4:{s:3:"hid";s:7:"shopify";s:5:"title";s:7:"Shopify";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:8;a:4:{s:3:"hid";s:6:"django";s:5:"title";s:6:"Django";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:422:"Welcome
+
+Hi.
+
+Software
+
+	*  i3
+	*  neovim
+	*  spacevim 
+	*  oh-my-zsh
+	*  mutt
+	*  screen/tmux
+	*  bacula
+	*  compression - tar/rar/gzip etc
+	*  dump
+	*  rsync
+	*  webmin
+	*  docker
+	*  vagrant
+	*  ansible
+
+----------
+
+Linux
+
+	*  visudo
+	*  cron
+	*  NFS
+	*  DHCP
+	*  DNS
+	*  Security
+	*  
+
+----------
+
+Programming
+
+	*  template
+
+Python
+
+	*  index
+
+PHP
+
+	*  index
+
+Web
+
+	*  index
+
+Shopify
+
+	*  index
+
+Django
+
+	*  index
+
+---";}s:8:"relation";a:2:{s:10:"references";a:26:{s:17:"linux:software:i3";b:1;s:21:"linux:software:neovim";b:1;s:23:"linux:software:spacevim";b:1;s:24:"linux:software:oh-my-zsh";b:1;s:19:"linux:software:mutt";b:1;s:21:"linux:software:screen";b:1;s:21:"linux:software:bacula";b:1;s:26:"linux:software:compression";b:1;s:19:"linux:software:dump";b:1;s:20:"linux:software:rsync";b:1;s:21:"linux:software:webmin";b:1;s:21:"linux:software:docker";b:1;s:22:"linux:software:vagrant";b:1;s:22:"linux:software:ansible";b:1;s:12:"linux:visudo";b:0;s:10:"linux:cron";b:0;s:9:"linux:nfs";b:0;s:10:"linux:dhcp";b:0;s:9:"linux:dns";b:0;s:14:"linux:security";b:0;s:14:"linux:template";b:0;s:12:"python:index";b:0;s:9:"php:index";b:0;s:9:"web:index";b:0;s:13:"shopify:index";b:0;s:12:"django:index";b:0;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:3:{s:4:"date";a:1:{s:7:"created";i:1508649771;}s:4:"user";s:0:"";s:7:"creator";s:0:"";}}

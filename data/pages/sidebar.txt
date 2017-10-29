@@ -1,0 +1,31 @@
+=== Navigation ===
+
+{{indexmenu>..|js#thread nopg skipns+/wiki/ navbar context}}
+
+----
+
+=== Popular Topics ===
+
+~~CLOUD:25~~
+
+----
+
+=== Links ===
+
+[[:start|Back to Start]]
+
+[[:start?do=index|Site Map]]
+
+[[wiki:welcome|Welcome to your new DokuWiki]]
+
+[[wiki:syntax|Formatting Syntax]]
+
+[[wiki:docuwiki|Docuwiki Help]]
+
+[[https://help.joshcannons.com/doku.php/sidebar?do=edit|Edit Sidebar]]
+
+[[https://joshcannons.com|Josh Cannons]]
+
+[[https://blog.joshcannons.com/|usr/share]]
+
+[[https://privata.com|Privata]]

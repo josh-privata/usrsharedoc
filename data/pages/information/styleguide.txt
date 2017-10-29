@@ -1,0 +1,390 @@
+====== Style Guide ======
+===== Typography =====
+==== Heading 2 ====
+=== Heading 3 ===
+== Heading 4 ==
+<code>
+====== Style Guide ======
+===== Typography =====
+==== Heading 2 ====
+=== Heading 3 ===
+== Heading 4 ==
+</code>
+<sub>subscript</sub>
+<code><sub>subscript</sub></code>
+
+<sup>superscript</sup>
+<code><sup>superscript</sup></code>
+
+Text ((This is a footnote))
+<code>Text ((This is a footnote))</code>
+
+**bold**
+<code>**bold**</code>
+
+//italic//
+<code>//italic//</code>
+
+__underlined__
+<code>__underlined__</code>
+
+<del>deleted</del>
+<code><del>deleted</del></code>
+
+===== Lists =====
+  * This is a list
+  * The second item
+    * You may have different levels
+  * Another item
+<code>
+  * This is a list
+  * The second item
+  * You may have different levels
+  * Another item
+</code>
+
+  - The same list but ordered
+  - Another item
+    - Just use indention for deeper levels
+  - That's it
+<code>
+  - The same list but ordered
+  - Another item
+  - Just use indention for deeper levels
+  - That's it
+</code>
+
+===== Links =====
+http://www.google.com 
+
+[[http://www.google.com|This Link points to google]]
+
+<andi@splitbrain.org>
+[[index]] or  [[index|Lists]]
+
+[[doku>pagename|Wiki pagenames]] 
+
+[[linux:index]]
+
+[[index#Lists|Lists]]
+
+[[wp>CamelCase]]
+<code>
+http://www.google.com 
+
+[[http://www.google.com|This Link points to google]]
+
+<andi@splitbrain.org>
+[[index]] or  [[index|Lists]]
+
+[[doku>pagename|Wiki pagenames]] 
+
+[[linux:index]]
+
+[[index#Lists|Lists]]
+
+[[wp>CamelCase]]
+</code>
+
+===== Images =====
+[[http://php.net|{{wiki:dokuwiki-128.png}}]]
+
+{{ wiki:dokuwiki-128.png |This is the caption}}
+
+{{wiki:dokuwiki-128.png?linkonly}} This is just a link to the image.
+<code>
+[[http://php.net|{{wiki:dokuwiki-128.png}}]]
+
+{{ wiki:dokuwiki-128.png |This is the caption}}
+
+{{wiki:dokuwiki-128.png?linkonly}} This is just a link to the image.
+</code>
+
+===== Warnings=====
+==== Text Warnings ====
+* <text type="muted">muted</text>
+* <text type="primary">primary</text>
+* <text type="success">success</text>
+* <text type="info">info</text>
+* <text type="warning">warning</text>
+* <text type="danger">danger</text>
+<code>
+* <text type="muted">muted</text>
+* <text type="primary">primary</text>
+* <text type="success">success</text>
+* <text type="info">info</text>
+* <text type="warning">warning</text>
+* <text type="danger">danger</text>
+</code>
+
+==== Section Warnings ====
+<callout type="question" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="primary" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="success" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+<code>
+<callout type="question" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="primary" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="success" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+</code>
+
+===== Panels and Grids =====
+<panel type="default" title="Title of Panel" subtitle="Subtitle" icon="fa fa-home">
+<grid>
+<col xs="6" md="4">
+<thumbnail>
+{{ wiki:dokuwiki-128.png }}
+<caption>
+=== DokuWiki ===
+//DokuWiki is a simple to use//
+</caption>
+</thumbnail>
+</col>
+<col xs="6" md="4">
+<thumbnail>
+{{ wiki:dokuwiki-128.png }}
+<caption>
+=== DokuWiki ===
+//DokuWiki is a simple to use//
+</caption>
+</thumbnail>
+</col>
+<col xs="6" md="4">
+<thumbnail>
+{{ wiki:dokuwiki-128.png }}
+<caption>
+=== DokuWiki ===
+//DokuWiki is a simple to use//
+</caption>
+</thumbnail>
+</col>
+</grid>
+</panel>
+<code>
+<panel type="default" title="Title of Panel" subtitle="Subtitle" icon="fa fa-home">
+<grid>
+<col xs="6" md="4">
+<thumbnail>
+{{ wiki:dokuwiki-128.png }}
+<caption>
+=== DokuWiki ===
+//DokuWiki is a simple to use//
+</caption>
+</thumbnail>
+</col>
+<col xs="6" md="4">
+<thumbnail>
+{{ wiki:dokuwiki-128.png }}
+<caption>
+=== DokuWiki ===
+//DokuWiki is a simple to use//
+</caption>
+</thumbnail>
+</col>
+<col xs="6" md="4">
+<thumbnail>
+{{ wiki:dokuwiki-128.png }}
+<caption>
+=== DokuWiki ===
+//DokuWiki is a simple to use//
+</caption>
+</thumbnail>
+</col>
+</grid>
+</panel>
+</code>
+
+===== Sections =====
+==== JumboTron ====
+<jumbotron>
+===== Look! =====
+I demand your attention
+</jumbotron>
+<code>
+<jumbotron>
+===== Look! =====
+I demand your attention
+</jumbotron>
+</code>
+
+==== Wells ====
+<well>Look, I'm in a well!</well>
+<code><well>Look, I'm in a well!</well></code>
+
+==== Accordion ====
+<accordion>
+<panel title="Software" class="panel-collapse collapse">
+  * [[linux:software:start|Software]]
+  * [[linux:software:index|Index]]
+</panel>
+<panel title="General" class="panel-collapse collapse">
+  * [[linux:start|Linux]]
+  * [[linux:index|Index]]
+</panel>
+<panel title="Configuration" class="panel-collapse collapse">
+  * [[configuration:start|Configuration]]
+  * [[configuration:index|Index]]
+</panel>
+</accordion>
+<code>
+<accordion>
+<panel title="Software" class="panel-collapse collapse">
+  * [[linux:software:start|Software]]
+  * [[linux:software:index|Index]]
+</panel>
+<panel title="General" class="panel-collapse collapse">
+  * [[linux:start|Linux]]
+  * [[linux:index|Index]]
+</panel>
+<panel title="Configuration" class="panel-collapse collapse">
+  * [[configuration:start|Configuration]]
+  * [[configuration:index|Index]]
+</panel>
+</accordion>
+</code>
+
+==== Modal Popup ====
+<btn type="primary" modal="modal-remote">Welcome to DokuWiki!</btn>
+<modal id="modal-remote" remote=":wiki:welcome"></modal>
+<code>
+<btn type="primary" modal="modal-remote">Welcome to DokuWiki!</btn>
+<modal id="modal-remote" remote=":wiki:welcome"></modal>
+</code>
+
+===== Tables =====
+^ Heading 1      ^ Heading 2       ^ Heading 3          ^
+| Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        |
+| Row 2 Col 1    | some colspan (note the double pipe) ||
+| Row 3 Col 1    | Row 3 Col 2     | Row 3 Col 3        |
+<code>
+^ Heading 1      ^ Heading 2       ^ Heading 3          ^
+| Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        |
+| Row 2 Col 1    | some colspan (note the double pipe) ||
+| Row 3 Col 1    | Row 3 Col 2     | Row 3 Col 3        |
+</code>
+
+|              ^ Heading 1            ^ Heading 2          ^
+^ Heading 3    | Row 1 Col 2          | Row 1 Col 3        |
+^ Heading 4    | no colspan this time |                    |
+^ Heading 5    | Row 2 Col 2          | Row 2 Col 3        |
+<code>
+|              ^ Heading 1            ^ Heading 2          ^
+^ Heading 3    | Row 1 Col 2          | Row 1 Col 3        |
+^ Heading 4    | no colspan this time |                    |
+^ Heading 5    | Row 2 Col 2          | Row 2 Col 3        |
+</code>
+
+^ Heading 1      ^ Heading 2                  ^ Heading 3          ^
+| Row 1 Col 1    | this cell spans vertically | Row 1 Col 3        |
+| Row 2 Col 1    | :::                        | Row 2 Col 3        |
+| Row 3 Col 1    | :::                        | Row 2 Col 3        |
+<code>
+^ Heading 1      ^ Heading 2                  ^ Heading 3          ^
+| Row 1 Col 1    | this cell spans vertically | Row 1 Col 3        |
+| Row 2 Col 1    | :::                        | Row 2 Col 3        |
+| Row 3 Col 1    | :::                        | Row 2 Col 3        |
+</code>
+
+| Image | ''gif'', ''jpg'', ''png''  |
+| Video | ''webm'', ''ogv'', ''mp4'' |
+| Audio | ''ogg'', ''mp3'', ''wav''  |
+| Flash | ''swf''                    |
+<code>
+| Image | ''gif'', ''jpg'', ''png''  |
+| Video | ''webm'', ''ogv'', ''mp4'' |
+| Audio | ''ogg'', ''mp3'', ''wav''  |
+| Flash | ''swf''                    |
+</code>
+
+===== Code and Unformatted Text =====
+<nowiki>
+This is some text which contains addresses like this: http://www.splitbrain.org and **formatting**
+</nowiki>
+<code>
+<nowiki>
+This is some text which contains addresses like this: http://www.splitbrain.org and **formatting**
+</nowiki>
+</code>
+
+<code java>
+/**
+ * The HelloWorldApp class implements an application that
+ * simply displays "Hello World!" to the standard output.
+ */
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); //Display the string.
+    }
+}
+</code>
+<code>
+<code java>
+/**
+ * The HelloWorldApp class implements an application that
+ * simply displays "Hello World!" to the standard output.
+ */
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); //Display the string.
+    }
+}
+</code>
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+<code>
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+</code>
+
+=== The following language strings are currently recognised ===
+  * 4cs 6502acme 6502kickass 6502tasm 68000devpac 
+  * abap actionscript3 actionscript ada aimms algol68 apache applescript apt_sources arm asm asp asymptote autoconf autohotkey autoit avisynth awk 
+  * bascomavr bash basic4gl batch bf biblatex bibtex blitzbasic bnf boo 
+  * caddcl cadlisp ceylon cfdg cfm chaiscript chapel cil c_loadrunner clojure c_mac cmake cobol coffeescript c cpp cpp-qt cpp-winapi csharp css cuesheet c_winapi 
+  * dart dcl dcpu16 dcs delphi diff div dos dot d 
+  * ecmascript eiffel email epc e erlang euphoria ezt 
+  * f1 falcon fo fortran freebasic freeswitch fsharp 
+  * gambas gdb genero genie gettext glsl gml gnuplot go groovy gwbasic 
+  * haskell haxe hicest hq9plus html html4strict html5 
+  * icon idl ini inno intercal io ispfpanel java5 java javascript jcl j jquery julia 
+  * kixtart klonec klonecpp kotlin 
+  * latex lb ldif lisp llvm locobasic logtalk lolcode lotusformulas lotusscript lscript lsl2 lua 
+  * m68k magiksf make mapbasic mathematica matlab mercury metapost mirc mk-61 mmix modula2 modula3 mpasm mxml mysql
+  * nagios netrexx newlisp nginx nimrod nsis 
+  * oberon2 objc objeck ocaml-brief ocaml octave oobas oorexx oracle11 oracle8 oxygene oz 
+  * parasail parigp pascal pcre perl6 perl per pf phix php-brief php pic16 pike pixelbender pli plsql postgresql postscript povray powerbuilder powershell proftpd progress prolog properties providex purebasic pycon pys60 python 
+  * qbasic qml q 
+  * racket rails rbs rebol reg rexx robots rpmspec rsplus ruby rust 
+  * sas sass scala scheme scilab scl sdlbasic smalltalk smarty spark sparql sql standardml stonescript swift systemverilog 
+  * tclegg tcl teraterm texgraph text thinbasic tsql twig typoscript 
+  * unicon upc urbi uscript 
+  * vala vbnet vb vbscript vedit verilog vhdl vim visualfoxpro visualprolog 
+  * whitespace whois winbatch 
+  * xbasic xml xojo xorg_conf xpp 
+  * yaml 
+  * z80 zxbasic
+
+===== Floating Affix =====
+<affix offset-top="50" position-top="100" position-right="20">
+<panel title="Affix">
+Look at Me!
+</panel>
+</affix>
+See the affix floating to the left near the top of the page...
+<code>
+<affix offset-top="50" position-top="100" position-right="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+</code>

@@ -1,0 +1,6 @@
+===== Python =====
+<accordion>
+<panel title="Python" class="panel-collapse collapse">
+{{indexmenu>:programming:python#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

@@ -1,0 +1,258 @@
+====== Title ======
+
+{{tag>linux configuration dhcp}}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+===== Procedure =====
+
+==== Step1 ====
+ISC-DHCP Server
+Install ISC-DHCP using the following command
+yum install dhcp
+Configuration
+ISC-DHCP Server
+(Configuring a DHCP Server, CentOS n.d.)
+Copy the default configuration file located at /usr/share/doc/dhcp-4.2.5/dhcpd.conf.example
+cp /usr/share/doc/dhcp-4.2.5/dhcpd.conf.example /etc/dhcp/dhcpd.conf
+Open the primary configuration file located at /etc/dhcp/dhcpd.conf
+vi /etc/dhcp/dhcpd.conf
+Make the changes as appropriate using the comments below as a guide
+# dhcpd.conf
+#
+# Sample configuration file for ISC dhcpd
+#
+# option definitions common to all supported networks...
+option domain-name "example.org";
+option domain-name-servers ns1.example.org, ns2.example.org;
+default-lease-time 600;
+max-lease-time 7200;
+# Use this to enble / disable dynamic dns updates globally.
+#ddns-update-style none;
+# If this DHCP server is the official DHCP server for the local
+# network, the authoritative directive should be uncommented.
+#authoritative;
+# Use this to send dhcp log messages to a different log file (you also
+# have to hack syslog.conf to complete the redirection).
+log-facility local7;
+# specify domain name
+option domain-name "yule.gove.net";
+# specify name server's hostname or IP address
+option domain-name-servers dns1.yule.gov.net;
+option domain-name-servers dns2.yule.gov.net;
+# default lease time
+default-lease-time 600;
+# max lease time
+max-lease-time 7200;
+# this DHCP server to be declared valid
+authoritative;
+# Configure Networks
+# Client Workstations
+subnet 10.0.2.0 netmask 255.255.255.0 {
+	# Specify the range of lease IP address
+	range					10.0.2.1 10.0.2.250
+	# Specify bootp IP range
+	range dynamic-bootp			10.0.2.251 10.0.0.254;
+	# Specify the subnet mask
+	option subnet-mask			255.255.255.0;
+	# Specify broadcast address
+	option broadcast-address		10.0.0.255;
+	# Specify default gateway
+	option routers			10.0.1.129;
+	# Specify Search Domain
+	option domain-search            "yule.gov.net";
+	# Specify DNS Servers
+	option domain-name-servers      10.0.1.9;
+	option domain-name-servers      10.0.1.10;
+}
+# Client Wireless
+subnet 10.0.4.0 netmask 255.255.255.0 {
+	# Specify the range of lease IP address
+	range					10.0.4.1 10.0.4.254
+	# Specify the subnet mask
+	option subnet-mask			255.255.255.0;
+	# Specify broadcast address
+	option broadcast-address		10.0.0.255;
+	# Specify default gateway
+	option routers			10.0.1.129;
+	# Specify Search Domain
+	option domain-search            "yule.gov.net";
+	# Specify DNS Servers
+	option domain-name-servers      10.0.1.9;
+	option domain-name-servers      10.0.1.10;
+}
+# Network Peripherals
+subnet 10.0.1.224 netmask 255.255.255.224 {
+	# Specify the range of lease IP address
+	range					10.0.1.225 10.0.1.254;
+	# Specify the subnet mask
+	option subnet-mask			255.255.255.224;
+	# Specify broadcast address
+	option broadcast-address		10.0.1.255;
+	# Specify default gateway
+	option routers			10.0.1.129;
+	# Specify Search Domain
+	option domain-search            "yule.gov.net";
+	# Specify DNS Servers
+	option domain-name-servers      10.0.1.9;
+	option domain-name-servers      10.0.1.10;
+}
+# VoIP 
+subnet 10.0.3.0 netmask 255.255.255.0 {
+	# Specify the range of lease IP address
+	range					10.0.3.1 10.0.3.254
+	# Specify the subnet mask
+	option subnet-mask			255.255.255.0;
+	# Specify broadcast address
+	option broadcast-address		10.0.0.255;
+	# Specify default gateway
+	option routers			10.0.1.129;
+	# Specify Search Domain
+	option domain-search            "yule.gov.net";
+	# Specify DNS Servers
+	option domain-name-servers      10.0.1.9;
+	option domain-name-servers      10.0.1.10;
+}
+# Admin Workstations
+subnet 10.0.1.192 netmask 255.255.255.224 {
+	# Specify the range of lease IP address
+	range					10.0.1.193 10.0.1.222;
+	# Specify the subnet mask
+	option subnet-mask			255.255.255.224;
+	# Specify broadcast address
+	option broadcast-address		10.0.1.223;
+	# Specify default gateway
+	option routers			10.0.1.129;
+	# Specify Search Domain
+	option domain-search            "yule.gov.net";
+	# Specify DNS Servers
+	option domain-name-servers      10.0.1.9;
+	option domain-name-servers      10.0.1.10;
+}
+# Server PXE Boot
+subnet 10.0.1.0 netmask 255.255.255.192 {
+	# Specify PXE boot IP range
+	range dynamic-bootp			10.0.1.58 10.0.1.62;
+	# Specify the subnet mask
+	option subnet-mask			255.255.255.192;
+	# Specify broadcast address
+	option broadcast-address		10.0.1.63;
+	# Specify default gateway
+	option routers			10.0.1.129;
+	# Specify Search Domain
+	option domain-search            "yule.gov.net";
+	# Specify DNS Servers
+	option domain-name-servers      10.0.1.9;
+	option domain-name-servers      10.0.1.10;
+}
+Start the dhcp service and enable it on system boot
+systemctl enable dhcp
+systemctl restart dhcp
+
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+==== Step2 ====
+
+Text ((This is a footnote))
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Conclusion ====
+
+Text
+
+===== Notes =====
+Filed under: {{tagpage>networking}}
+
+
+Created by @USER@ ( @MAIL@ ) on @DATE@

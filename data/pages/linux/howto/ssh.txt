@@ -1,0 +1,216 @@
+====== Title ======
+
+{{tag>linux how_to }}
+
+<affix offset-bottom="10" position-bottom="50" position-left="20">
+<panel title="Affix">
+Scroll the page!
+</panel>
+</affix>
+
+<jumbotron>
+===== Synopsis =====
+
+Synopsis goes here
+
+</jumbotron>
+
+===== Compatability =====
+
+|        ^ Working ^
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=ubuntu|Ubuntu]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=fedora|Fedora]]  | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=centos|CentOS]]  | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=arch|Arch]]    | No  | 
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=windows|Windows]] | Yes |
+^ [[https://help.joshcannons.com/doku.php/tag/list?do=showtag&tag=osx|OS X]] | Yes | 
+
+
+===== Software =====
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+[[index#Lists|Lists]]
+
+
+===== Links =====
+[[http://www.google.com|This Link points to google]]
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+[[http://www.google.com|This Link points to google]] 
+
+
+===== Procedure =====
+==== SSH for ansible ====
+Set Up SSH Keys
+As we mentioned above, Ansible primarily communicates with client computers through SSH. While it certainly has the ability to handle password-based SSH authentication, SSH keys help keep things simple.
+
+We can set up SSH keys in two different ways depending on whether you already have a key you want to use. We will assume that the servers you want to be administering will be DigitalOcean droplets.
+
+Create a New SSH Key Pair
+
+If you do not already have an SSH key pair that you would like to use for Ansible administration, we can create one now on your Ansible VPS.
+
+We will create an SSH key pair on our Ansible droplet to authenticate with the hosts that it will administer.
+
+As the user you will be controlling Ansible with, create an RSA key-pair by typing:
+
+ssh-keygen
+You will be asked to specify the file location of the created key pair, a passphrase, and the passphrase confirmation. Press ENTER through all of these to accept the default values.
+
+Your new keys are available in your user's ~/.ssh directory. The public key (the one you can share) is called id_rsa.pub. The private key (the one that you keep secure) is called id_rsa.
+
+You can add them to your DigitalOcean control panel to allow you to embed your SSH key into newly created droplets. This will allow your Ansible droplet to SSH into your new droplets immediately, without any other authentication.
+
+To do this, click on the "SSH Keys" link on the left-hand navigation menu. In the new screen, click on the "Add SSH Key" button in the top-right corner:
+
+DigitalOcean add key
+
+Enter the name you want associated with this key into the top field. On your Ansible VPS instance, type this to get the contents of your public key:
+
+cat ~/.ssh/id_rsa.pub
+Example public key
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDzmGgsqjSFuOBbjZB1sgquKpp3Ty+FgqoLrzjKbbk9VGOH6kM37aAhyxxmTQfe69lhYi/WCai+mrXOyY9IiQbUfZ4jsfPE9DS3zHhmnGiBWA7pedCTJ/Nhf06dmhAJIbExW3uDghbPbzbSA5Ihn1x0F5FXtSMDoFtyjcwUwJxc2z/kk9TKcFSl8qqf4IYBYE7c+EKaYRBjjDP4AQmiwjTPuipsmub7C0OGF0dTMatIa0lok6rwy91nmhCQV6polG0+Fsk4YrY8Yh5xz6wE0lOvc8BwP9nL0zsnw6Ey0MHV9BbMqtyD6x/fCurpIkMHJK4nv79rToSWA0AwoP/bJXh7 demo@ansible0
+The string that is given back to you is what you need to paste in the second field in the DigitalOcean control panel:
+
+DigitalOcean Ansible key
+
+Click "Create SSH Key" to add your key to the control panel. Now, whenever you create a new droplet, you will be able to embed your public SSH key into the new server, allowing you to communicate with your Ansible instance. You just need to select the key in the "Add optional SSH Keys" section of the droplet creation process:
+
+DigitalOcean embed key
+
+Transfer an Existing SSH Key Pair to Ansible
+
+If you already have a SSH key pair that you are using to authenticate with your droplets, you can transfer the credentials to your new Ansible droplet instead of creating a new pair. This has the advantage of making it automatically work with any servers you have already configured to use the key.
+
+On the computer where you have configured SSH key authentication for your droplets, get the public key by typing:
+
+cat ~/.ssh/id_rsa.pub
+Example public key
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDzmGgsqjSFuOBbjZB1sgquKpp3Ty+FgqoLrzjKbbk9VGOH6kM37aAhyxxmTQfe69lhYi/WCai+mrXOyY9IiQbUfZ4jsfPE9DS3zHhmnGiBWA7pedCTJ/Nhf06dmhAJIbExW3uDghbPbzbSA5Ihn1x0F5FXtSMDoFtyjcwUwJxc2z/kk9TKcFSl8qqf4IYBYE7c+EKaYRBjjDP4AQmiwjTPuipsmub7C0OGF0dTMatIa0lok6rwy91nmhCQV6polG0+Fsk4YrY8Yh5xz6wE0lOvc8BwP9nL0zsnw6Ey0MHV9BbMqtyD6x/fCurpIkMHJK4nv79rToSWA0AwoP/bJXh7 demo@ansible0
+On your Ansible server, you need to create a hidden directory to store your keys. Call it .ssh so that the SSH program knows where to find it:
+
+mkdir ~/.ssh
+We should lock access to this directory down so that only you can enter or write to it:
+
+chmod 700 ~/.ssh
+Now, move into the directory and open a file called id_rsa.pub in your text editor:
+
+cd ~/.ssh
+nano id_rsa.pub
+Paste the output of your public key from your home computer into this file:
+
+Example id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDzmGgsqjSFuOBbjZB1sgquKpp3Ty+FgqoLrzjKbbk9VGOH6kM37aAhyxxmTQfe69lhYi/WCai+mrXOyY9IiQbUfZ4jsfPE9DS3zHhmnGiBWA7pedCTJ/Nhf06dmhAJIbExW3uDghbPbzbSA5Ihn1x0F5FXtSMDoFtyjcwUwJxc2z/kk9TKcFSl8qqf4IYBYE7c+EKaYRBjjDP4AQmiwjTPuipsmub7C0OGF0dTMatIa0lok6rwy91nmhCQV6polG0+Fsk4YrY8Yh5xz6wE0lOvc8BwP9nL0zsnw6Ey0MHV9BbMqtyD6x/fCurpIkMHJK4nv79rToSWA0AwoP/bJXh7 demo@ansible0
+Save and close the file. We will make sure that this file has the correct permissions by typing:
+
+chmod 644 id_rsa.pub
+Now, back on your local computer that is configured for SSH key access, type:
+
+cat ~/.ssh/id_rsa
+Example private key
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpgIBAAKCAQEA85hoLKo0hbjgW42QdbIKriqad08vhYKqC684ym25PVRjh+pD
+N+2gIcl8Zk0H3uvZYWIv1gmsfpq1zsmPSIkG1H2eI7HzxPQ0qMx4ZpxogVgO6XnQ
+kyfzYX9OnZoQCSGxMVt7g4IWz2820gOSIZ9cdBeRV7UjA6Bbco3MFMCcXNs/5JPU
+ynBUpfKqn+CGAWBO3PhCmmEQY4wz+AEJosI0z7oqbJrm/AtDhhdHUzGrSGtJaJOq
+. . .
+. . .
+cqsqOEzXAoGBAPMJJ8RrKUBuSjVNkzebst9sBgNadmaoQUoMHUDr8KpCZhWAoHB7
+1VKmq7VSphQSruI31qy2M88Uue1knC/nQr1bE1DITZgezETSsDqsAMBo8bqDN6TT
+qVJgG+TS9BRC+IowuzMVV5mzrfJjkrb+GG+xWSXrTLZMbeeTf+D0SfVo
+-----END RSA PRIVATE KEY-----
+The output will be quite long.
+
+Back on your Ansible droplet, we need to create a new file in the ~/.ssh directory:
+
+nano id_rsa
+Inside, paste the results of the previous command on your local computer:
+
+id_rsa
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpgIBAAKCAQEA85hoLKo0hbjgW42QdbIKriqad08vhYKqC684ym25PVRjh+pD
+N+2gIcl8Zk0H3uvZYWIv1gmsfpq1zsmPSIkG1H2eI7HzxPQ0qMx4ZpxogVgO6XnQ
+kyfzYX9OnZoQCSGxMVt7g4IWz2820gOSIZ9cdBeRV7UjA6Bbco3MFMCcXNs/5JPU
+ynBUpfKqn+CGAWBO3PhCmmEQY4wz+AEJosI0z7oqbJrm/AtDhhdHUzGrSGtJaJOq
+. . .
+. . .
+cqsqOEzXAoGBAPMJJ8RrKUBuSjVNkzebst9sBgNadmaoQUoMHUDr8KpCZhWAoHB7
+1VKmq7VSphQSruI31qy2M88Uue1knC/nQr1bE1DITZgezETSsDqsAMBo8bqDN6TT
+qVJgG+TS9BRC+IowuzMVV5mzrfJjkrb+GG+xWSXrTLZMbeeTf+D0SfVo
+-----END RSA PRIVATE KEY-----
+Make sure that you include the first and last marker lines. They are required in order for the key file to be valid. Save and close the file.
+
+We need to change the permissions to keep this file secure:
+
+chmod 600 id_rsa
+At this point, Ansible will be able to use these SSH keys to communicate with any servers that have the key embedded.
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step2 ====
+
+Text ((This is a footnote))
+
+''monospaced''
+
+<callout type="info" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="warning" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="tip" icon="true">Dont forget to wipe your bottom</callout>
+<callout type="danger" icon="true">Dont forget to wipe your bottom</callout>
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step3 ====
+
+Text
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+==== Step4 ====
+
+Text
+
+**bold**, //italic//, __underlined__
+
+''monospaced''
+
+Text
+
+<file php myexample.php>
+<?php echo "hello world!"; ?>
+</file>
+
+<well>''Some Output''</well>
+
+===== Notes =====
+Text
+
+Filed under: {{tagpage>networking}}
+Created by @USER@ ( @MAIL@ ) on @DATE@

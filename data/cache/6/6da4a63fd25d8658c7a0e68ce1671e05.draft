@@ -1,0 +1,34 @@
+a:6:{s:2:"id";s:16:"wiki:joshcannons";s:6:"prefix";s:0:"";s:4:"text";s:345:"==== Software ====
+  * neovim
+  * spacevim
+  * oh-my-zsh
+  * mutt
+  * screen/tmux
+  * bacula
+  * compression tar/rar/gzip etc
+  * dump
+  * rsync
+  * webmin
+  * docker
+  * vagrant
+  * ansible
+
+----
+
+==== Config ====
+  * visudo
+  * cron
+  * 
+
+----
+
+==== Linux ====
+
+  * NFS
+  * DHCP
+  * DNS
+  * Seurity
+  * 
+
+----
+";s:6:"suffix";s:0:"";s:4:"date";i:1508558095;s:6:"client";s:11:"joshcannons";}

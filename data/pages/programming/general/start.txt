@@ -1,0 +1,6 @@
+===== General =====
+<accordion>
+<panel title="General" class="panel-collapse collapse">
+{{indexmenu>:programming:general#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>

@@ -1,0 +1,6 @@
+===== Shopify =====
+<accordion>
+<panel title="Shopify" class="panel-collapse collapse">
+{{indexmenu>:programming:shopify#1|tsort skipfile[+]/index|start/}}
+</panel>
+</accordion>
